@@ -25,15 +25,14 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String TABLE_OPSI_GRAMMAR               = "TB_OPSI_GRAMMAR";
     public static final String COLUMN_ID_OPSI_GRAMMAR           = "ID_OPSI ";
     public static final String COLUMN_OPSI_GRAMMAR              = "PILIHAN";
-//    public static final String COLUMN_ID_GRAMMAR= "ID_GRAMMAR"; // CUKUP SATU
 
     // TABLE LOG GRAMMAR
     public static final String TABLE_LOG_GRAMMAR = "log_grammar";
     public static final String COLUMN_ID_LOG_GRAMMAR="id_log_grammar";
 
 
-    // TABLE_READING
-    public static final String TABLE_READING = "TB_READING";
+    // TABLE_SOAL_READING
+    public static final String TABLE_SOAL_READING = "TB_SOAL_READING";
     public static final String COLUMN_ID_READING = "ID_READING";
     public static final String COLUMN_PERTANYAAN_READING = " PERTANYAAN";
     public static final String COLUMN_JAWABAN_READING = " JAWABAN";
@@ -45,12 +44,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_ID_NARASI = " ID_NARASI_READING";
     public static final String COLUMN_NARASI = " NARASI";
 
-
-    public static final String TABLE_TANYA_READING = "pertanyaan_reading";
     public static final String COLUMN_ID_TANYA_READING = "id_tanya_Reading";
 
     // TABLE OPSI READING
-
     public static final String TABLE_OPSI_READING = "TB_OPSI_READING";
     public static final String COLUMN_ID_OPSI_READING = "ID_OPSI ";
     public static final String COLUMN_OPSI_READING = "PILIHAN";
@@ -139,13 +135,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
      * id_bacaan
      */
     private static final String CREATE_TABLE_TANYA_READING = " create table "
-            + TABLE_READING + " ("
+            + TABLE_SOAL_READING + " ("
             + COLUMN_ID_READING             + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_PERTANYAAN_READING     + " TEXT NOT NULL, " +
             COLUMN_JAWABAN_READING          + " TEXT NOT NULL, " +
             COLUMN_ID_NARASI                + " INTEGER NOT NULL, " +
             COLUMN_PENJELASAN_READING       + " TEXT NOT NULL );";
-
 
 
 
@@ -202,7 +197,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     @Override // untuk melakukan eksekusi
     public void onCreate(SQLiteDatabase database) {
-
         database.execSQL(CREATE_TABLE_TANYA_GRAMMAR);
         database.execSQL(CREATE_TABLE_OPSI_GRAMMAR);
         database.execSQL(CREATE_TABLE_LOG_GRAMMAR);
@@ -221,9 +215,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.execSQL(" DROP TABLE IF EXIST " + TABLE_GRAMMAR);
         database.execSQL(" DROP TABLE IF EXIST " + TABLE_OPSI_GRAMMAR);
         database.execSQL(" DROP TABLE IF EXIST " + TABLE_LOG_GRAMMAR);
-//        database.execSQL(" DROP TABLE IF EXIST " + TABLE_READING);
+
+        //reading
         database.execSQL(" DROP TABLE IF EXIST " + TABLE_NARASI_READING);
-        database.execSQL(" DROP TABLE IF EXIST " + TABLE_TANYA_READING);
+        database.execSQL(" DROP TABLE IF EXIST " + TABLE_SOAL_READING);
+
         database.execSQL(" DROP TABLE IF EXIST " + TABLE_OPSI_READING );
 //        database.execSQL(" DROP TABLE IF EXIST " + TABLE_AktivitasUser);
         database.execSQL(" DROP TABLE IF EXIST " + TABLE_LOG_READING);

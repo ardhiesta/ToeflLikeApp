@@ -119,13 +119,13 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
         return menampungrecord;
     }
 
-    public int hitungrecordReading() {
-        int menampungrecord = 0;
-        Cursor cursor = database.rawQuery("select count(*) from " + databaseHelper.TABLE_READING, null);
-        cursor.moveToFirst();
-        menampungrecord = cursor.getInt(0);
-        return menampungrecord;
-    }
+//    public int hitungrecordReading() {
+//        int menampungrecord = 0;
+//        Cursor cursor = database.rawQuery("select count(*) from " + databaseHelper.TABLE_READING, null);
+//        cursor.moveToFirst();
+//        menampungrecord = cursor.getInt(0);
+//        return menampungrecord;
+//    }
 
 
     //
@@ -146,12 +146,21 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
         return menampungrecord;
     }
 
-    public int hitungrecordNarasiReading() {
-        int menampungrecord = 0;
-        Cursor cursor = database.rawQuery("select count(*) from " + databaseHelper.TABLE_NARASI_READING, null);
+//    public int hitungrecordNarasiReading() {
+//        int menampungrecord = 0;
+//        Cursor cursor = database.rawQuery("select count(*) from " + databaseHelper.TABLE_NARASI_READING, null);
+//        cursor.moveToFirst();
+//        menampungrecord = cursor.getInt(0);
+//        return menampungrecord;
+//    }
+
+    //untuk menghitung jumlah record di dalam suatu tabel
+    public int hitungJumlahRecordTabel(String namaTabel){
+        int jmlRecord = 0;
+        Cursor cursor = database.rawQuery("select count(*) from " + namaTabel, null);
         cursor.moveToFirst();
-        menampungrecord = cursor.getInt(0);
-        return menampungrecord;
+        jmlRecord = cursor.getInt(0);
+        return jmlRecord;
     }
 
 
@@ -207,8 +216,8 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
 // masuk ke bagian reading
 
     // memasukkan data pertanyaan ke tabel pertanyaan reading
-    public void insertDataPertanyaanReading(int id, String pertanyaan, String jawaban, String penjelasan, int id_narasi) {
-        database.execSQL("insert into " + databaseHelper.TABLE_READING + " (" +
+    public void insertDataSoalReading(int id, String pertanyaan, String jawaban, String penjelasan, int id_narasi) {
+        database.execSQL("insert into " + databaseHelper.TABLE_SOAL_READING + " (" +
                 databaseHelper.COLUMN_ID_READING + "," +
                 databaseHelper.COLUMN_JAWABAN_READING + "," +
                 databaseHelper.COLUMN_PENJELASAN_READING + "," +
@@ -221,17 +230,7 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
                 id_narasi + "')");
     }
 
-
-    public int hitungJumlahData(String namaTabel) {
-        Cursor cursor = database.rawQuery("select count(*) from " + namaTabel, null);
-        cursor.moveToFirst();
-        int jml = cursor.getInt(0);
-        cursor.close();
-        return jml;
-    }
-
     // unutk membuat data narasi
-
     public void buatDataBacaanReading(int id, String bacaan) {
         database.execSQL("insert into " + SQLiteHelper.TABLE_NARASI_READING + " (" +
                 SQLiteHelper.COLUMN_ID_NARASI + ", " +
@@ -257,7 +256,7 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
             int idNaskah = cursor.getInt(0);
             narasiReading.setId_narasi(idNaskah);
             narasiReading.setNarasi(cursor.getString(1));
-            narasiReading.setPertanyaanReadingArraylist(ambilPertanyaanReading(idNaskah));
+            narasiReading.setPertanyaanReadingArraylist(ambilSoalReading(idNaskah));
             narasiReadingArrayList.add(narasiReading);
             cursor.moveToNext();
         }
@@ -266,8 +265,8 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
 
 
     // mengambil data pertanyaan untuk soal tipe reading
-    public ArrayList<PertanyaanReading> ambilPertanyaanReading(int idNaskahReading) {
-        String queryPertanyaanReading = "select * from " + SQLiteHelper.TABLE_READING +
+    public ArrayList<PertanyaanReading> ambilSoalReading(int idNaskahReading) {
+        String queryPertanyaanReading = "select * from " + SQLiteHelper.TABLE_SOAL_READING +
                 " where " + SQLiteHelper.COLUMN_ID_NARASI + " = ?";
         Cursor cursor = database.rawQuery(queryPertanyaanReading, new String[]
                 {String.valueOf(idNaskahReading)});
@@ -323,21 +322,18 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
 
 
     // memasukkan opsi ke opsi
-    public void insertDataKeOpsiReading(int id, String opsi, int id_soal_reading) {
+    public void insertDataOpsiReading(String opsi, int id_soal_reading) {
         database.execSQL("insert into " + databaseHelper.TABLE_OPSI_READING + " (" +
-                databaseHelper.COLUMN_ID_OPSI_READING + "," +
-                databaseHelper.COLUMN_OPSI_READING + "," +
-                databaseHelper.COLUMN_ID_READING + ") values (" +
-                id + ",'" +
-
-                opsi + "'," +
+                databaseHelper.COLUMN_OPSI_READING + ", " +
+                databaseHelper.COLUMN_ID_READING + ") values ('" +
+                opsi + "', " +
                 id_soal_reading + ")");
     }
 
 
     // insert  masukan data opsi ke table baca reading
 
-    public void insertDataKenarasiReading(int id, String NarasiReading) {
+    public void insertDataNarasiReading(int id, String NarasiReading) {
         database.execSQL(" insert into " + databaseHelper.TABLE_NARASI_READING + " (" +
                 databaseHelper.COLUMN_ID_NARASI + "," +
                 databaseHelper.COLUMN_NARASI + ") values (" +
