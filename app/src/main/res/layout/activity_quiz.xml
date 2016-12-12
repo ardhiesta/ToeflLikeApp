@@ -10,7 +10,7 @@
     tools:context=".ActivityQuiz">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="GRAMMAR"
         android:id="@+id/button3"
@@ -20,7 +20,7 @@
         android:onClick="tampilkanSoalGrammar"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="READING"
         android:id="@+id/button4"
@@ -30,7 +30,7 @@
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Listening"
         android:id="@+id/button5"

@@ -8,107 +8,111 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ActivityKuisReading">
-    <LinearLayout
+
+    <ScrollView
+        android:id="@+id/svReadingTop"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:id="@+id/LLTop"
-        >
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_alignParentTop="true">
+
         <TextView
+            android:id="@+id/TvNarasi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/TvNarasi"
+            android:text="[narasi]"
             android:textColor="#000000"
-            android:textSize="22sp"
-            android:text="[narasi]"/>
+            android:textSize="22sp" />
     </ScrollView>
-    </LinearLayout>
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/LLTop"
-        android:orientation="vertical">
-        <ScrollView
+        android:layout_below="@+id/svReadingTop">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TVPertanyaanReading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/TVPertanyaanReading"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="[pertanyaan]"
-                    android:textColor="#000000"
-                    android:textSize="22sp"  />
-                <TextView
-                    android:id="@+id/TvOpsiReading1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="#000000"
-                    android:text="[opsi1]" />
-                <TextView
-                    android:id="@+id/TvOpsiReading2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="#000000"
-                    android:text="[opsi2]" />
-                <TextView
-                    android:id="@+id/TvOpsiReading3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="#000000"
-                    android:text="[opsi3]" />
-                <TextView
-                    android:id="@+id/TvOpsiReading4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="#000000"
-                    android:text="[opsi4]" />
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:text="[pertanyaan]"
+                android:textColor="#000000"
+                android:textSize="22sp" />
 
-                <TextView
-                    android:id="@+id/PenjelasanReading"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="#000000"
-                    android:text="[penjelasan]"
-                    android:layout_marginTop="15dp"/>
+            <TextView
+                android:id="@+id/TvOpsiReading1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="opsi1KlikReading"
+                android:text="[opsi1]"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/TvOpsiReading2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="opsi2KlikReading"
+                android:text="[opsi2]"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TvOpsiReading3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="opsi3KlikReading"
+                android:text="[opsi3]"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TvOpsiReading4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="opsi4KlikReading"
+                android:text="[opsi4]"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/PenjelasanReading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="[penjelasan]"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
     <LinearLayout
         android:id="@+id/LLReadingBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
+
         <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
             android:id="@+id/BbackReading"
-            android:text="back"/>
-
-        <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:id="@+id/bNextReading"
-            android:text="Next" />
+            android:text="back" />
 
+        <Button
+            android:id="@+id/bNextReading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:onClick="tampilkanPertanyaanReadingSelanjutnya"
+            android:text="Next" />
     </LinearLayout>
 
 </RelativeLayout>

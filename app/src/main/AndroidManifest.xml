@@ -22,7 +22,8 @@
         <activity android:name=".ActivityHasil" />
         <activity android:name=".ActivityListening" />
         <activity android:name=".ActivityListeningPartB" />
-        <activity android:name=".ActivityCekJawabanListening"></activity>
+        <activity android:name=".ActivityCekJawabanListening" />
+        <activity android:name=".ActivityCekJawabanReading"></activity>
     </application>
 
 </manifest>
