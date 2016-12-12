@@ -5,8 +5,9 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.NarasiReading;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.OpsiReading;
@@ -25,6 +26,7 @@ public class ActivityKuisReading extends AppCompatActivity {
     //    ArrayList<ReadingLog> aktivitasUserDikuisReading = new ArrayList<>();
     boolean reCheckJawaban = false;
 //    int indexAktivitasUser = 0;
+    Button bNextReading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,11 @@ public class ActivityKuisReading extends AppCompatActivity {
         TvOpsi3 = (TextView) findViewById(R.id.TvOpsiReading3);
         TvOpsi4 = (TextView) findViewById(R.id.TvOpsiReading4);
         TvPenjelasan = (TextView) findViewById(R.id.PenjelasanReading);
+        bNextReading = (Button) findViewById(R.id.bNextReading);
 
         TvPenjelasan.setText("");
+        //tombol next tidak bisa diklik kecuali user telah memilih sebuah opsi untuk menjawab soal
+        bNextReading.setEnabled(false);
 
         tampilkanPertanyaan(indexNarasi, indexPertanyaan);
     }
@@ -101,29 +106,32 @@ public class ActivityKuisReading extends AppCompatActivity {
                     tampilkanPertanyaan(indexNarasi, indexPertanyaan);
                 }
             }
-
-        }
+        } 
     }
 
     public void opsi1KlikReading(View view) {
         //ambil Abjad Pilihan User
         setOpsi(TvOpsi1);
         jawabanUser = "a";
+        bNextReading.setEnabled(true);
     }
 
     public void opsi2KlikReading(View view) {
         setOpsi(TvOpsi2);
         jawabanUser = "b";
+        bNextReading.setEnabled(true);
     }
 
     public void opsi3KlikReading(View view) {
         setOpsi(TvOpsi3);
         jawabanUser = "c";
+        bNextReading.setEnabled(true);
     }
 
     public void opsi4KlikReading(View view) {
         setOpsi(TvOpsi4);
         jawabanUser = "d";
+        bNextReading.setEnabled(true);
     }
 
 
@@ -135,6 +143,7 @@ public class ActivityKuisReading extends AppCompatActivity {
 
     public void netralkanOpsi() {
         jawabanUser = "";
+        bNextReading.setEnabled(false);
 
         TvOpsi1.setTypeface(null, Typeface.NORMAL);
         TvOpsi2.setTypeface(null, Typeface.NORMAL);
