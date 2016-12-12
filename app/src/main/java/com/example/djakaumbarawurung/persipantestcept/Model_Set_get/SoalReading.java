@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by Djaka Umbara Wurung on 10/19/2016.
  */
-public class PertanyaanReading {
+public class SoalReading {
     private int id;
     private String petanyaan;
     private String jawaban;

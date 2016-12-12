@@ -42,15 +42,15 @@ public class ActivityHome extends AppCompatActivity {
 
         //insert soal reading
         if (dataSource_penghubungTabel.hitungJumlahRecordTabel(SQLiteHelper.TABLE_SOAL_READING) == 0) {
-            dataSource_penghubungTabel.insertDataSoalReading(1, "soal 1 narasi 1", "a", " penjelasan", 1);
-            dataSource_penghubungTabel.insertDataSoalReading(2, "soal 2 narasi 1", "b", " penjelasan", 1);
-            dataSource_penghubungTabel.insertDataSoalReading(3, "soal 3 narasi 1", "c", " penjelasan", 1);
-            dataSource_penghubungTabel.insertDataSoalReading(4, "soal 1 narasi 2", "a", " penjelasan", 2);
-            dataSource_penghubungTabel.insertDataSoalReading(5, "soal 2 narasi 2", "a", " penjelasan", 2);
-            dataSource_penghubungTabel.insertDataSoalReading(6, "soal 3 narasi 2", "a", " penjelasan", 2);
-            dataSource_penghubungTabel.insertDataSoalReading(7, "soal 1 narasi 3", "a", " penjelasan", 3);
-            dataSource_penghubungTabel.insertDataSoalReading(8, "soal 2 narasi 3", "a", " penjelasan", 3);
-            dataSource_penghubungTabel.insertDataSoalReading(9, "soal 3 narasi 3", "a", " penjelasan", 3);
+            dataSource_penghubungTabel.insertDataSoalReading(1, "soal 1 narasi 1", "a", "penjelasan 1", 1);
+            dataSource_penghubungTabel.insertDataSoalReading(2, "soal 2 narasi 1", "b", "penjelasan 2", 1);
+            dataSource_penghubungTabel.insertDataSoalReading(3, "soal 3 narasi 1", "c", "penjelasan 3", 1);
+            dataSource_penghubungTabel.insertDataSoalReading(4, "soal 1 narasi 2", "a", "penjelasan 4", 2);
+            dataSource_penghubungTabel.insertDataSoalReading(5, "soal 2 narasi 2", "a", "penjelasan 5", 2);
+            dataSource_penghubungTabel.insertDataSoalReading(6, "soal 3 narasi 2", "a", "penjelasan 6", 2);
+            dataSource_penghubungTabel.insertDataSoalReading(7, "soal 1 narasi 3", "a", "penjelasan 7", 3);
+            dataSource_penghubungTabel.insertDataSoalReading(8, "soal 2 narasi 3", "a", "penjelasan 8", 3);
+            dataSource_penghubungTabel.insertDataSoalReading(9, "soal 3 narasi 3", "a", "penjelasan 9", 3);
         }
 
         //insert opsi reading

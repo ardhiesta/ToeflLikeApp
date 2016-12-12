@@ -7,25 +7,25 @@ import java.util.ArrayList;
  */
 public class NarasiReading {
 
-    private int id_narasi;
+    private int idNarasi;
     private String narasi;
 
-    public ArrayList<PertanyaanReading> getPertanyaanReadingArraylist() {
-        return pertanyaanReadingArraylist;
+    public ArrayList<SoalReading> getSoalReadingArrayList() {
+        return soalReadingArrayList;
     }
 
-    public void setPertanyaanReadingArraylist(ArrayList<PertanyaanReading> pertanyaanReadingArraylist) {
-        this.pertanyaanReadingArraylist = pertanyaanReadingArraylist;
+    public void setSoalReadingArrayList(ArrayList<SoalReading> soalReadingArrayList) {
+        this.soalReadingArrayList = soalReadingArrayList;
     }
 
-    private ArrayList<PertanyaanReading> pertanyaanReadingArraylist;
+    private ArrayList<SoalReading> soalReadingArrayList;
 
-    public int getId_narasi() {
-        return id_narasi;
+    public int getIdNarasi() {
+        return idNarasi;
     }
 
-    public void setId_narasi(int id_narasi) {
-        this.id_narasi = id_narasi;
+    public void setIdNarasi(int idNarasi) {
+        this.idNarasi = idNarasi;
     }
 
     public String getNarasi() {

@@ -11,7 +11,7 @@ import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Grammar;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.NarasiReading;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Opsi;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.OpsiReading;
-import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.PertanyaanReading;
+import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.SoalReading;
 
 import java.util.ArrayList;
 
@@ -244,7 +244,7 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
 
     // mengambil data naskah narasi untuk setiap soal tipe reading
 
-    public ArrayList<NarasiReading> ambilNaskahReading() {
+    public ArrayList<NarasiReading> ambilNarasiReading() {
         String queryNaskah = " select * from " + SQLiteHelper.TABLE_NARASI_READING;
         Cursor cursor = database.rawQuery(queryNaskah,null);
         cursor.moveToFirst();
@@ -253,10 +253,10 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
         ArrayList<NarasiReading>narasiReadingArrayList = new ArrayList<>();
         while(!cursor.isAfterLast()){
             NarasiReading narasiReading= new NarasiReading();
-            int idNaskah = cursor.getInt(0);
-            narasiReading.setId_narasi(idNaskah);
+            int idNarasi = cursor.getInt(0);
+            narasiReading.setIdNarasi(idNarasi);
             narasiReading.setNarasi(cursor.getString(1));
-            narasiReading.setPertanyaanReadingArraylist(ambilSoalReading(idNaskah));
+            narasiReading.setSoalReadingArrayList(ambilSoalReading(idNarasi));
             narasiReadingArrayList.add(narasiReading);
             cursor.moveToNext();
         }
@@ -265,26 +265,26 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
 
 
     // mengambil data pertanyaan untuk soal tipe reading
-    public ArrayList<PertanyaanReading> ambilSoalReading(int idNaskahReading) {
+    public ArrayList<SoalReading> ambilSoalReading(int idNaskahReading) {
         String queryPertanyaanReading = "select * from " + SQLiteHelper.TABLE_SOAL_READING +
                 " where " + SQLiteHelper.COLUMN_ID_NARASI + " = ?";
         Cursor cursor = database.rawQuery(queryPertanyaanReading, new String[]
                 {String.valueOf(idNaskahReading)});
         cursor.moveToFirst();
 
-        ArrayList<PertanyaanReading> pertanyaanReadingArrayList = new ArrayList<>();
+        ArrayList<SoalReading> soalReadingArrayList = new ArrayList<>();
         while (!cursor.isAfterLast()) {
-            PertanyaanReading pertanyaanReading = new PertanyaanReading();
+            SoalReading soalReading = new SoalReading();
             int idPertanyaan = cursor.getInt(0);
-            pertanyaanReading.setId(idPertanyaan);
-            pertanyaanReading.setPertanyaan(cursor.getString(1));
-            pertanyaanReading.setJawaban(cursor.getString(2));
-            pertanyaanReading.setPenjelasan(cursor.getString(3));
-            pertanyaanReading.setOpsiReadingArrayList(ambilOpsiReading(idPertanyaan));
-            pertanyaanReadingArrayList.add(pertanyaanReading);
+            soalReading.setId(idPertanyaan);
+            soalReading.setPertanyaan(cursor.getString(1));
+            soalReading.setJawaban(cursor.getString(2));
+            soalReading.setPenjelasan(cursor.getString(4));
+            soalReading.setOpsiReadingArrayList(ambilOpsiReading(idPertanyaan));
+            soalReadingArrayList.add(soalReading);
             cursor.moveToNext();
         }
-        return pertanyaanReadingArrayList;
+        return soalReadingArrayList;
     }
 
     // mengambil data opsi pertanyaan untuk soal tipe reading

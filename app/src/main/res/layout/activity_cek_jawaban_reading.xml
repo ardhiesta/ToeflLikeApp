@@ -100,6 +100,7 @@
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:text="back"
+            android:onClick="tampilkanBackAktivitasUserReading"
             android:id="@+id/btnBackCekReading"
             />
         <Button
@@ -107,6 +108,7 @@
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:text="next"
+            android:onClick="tampilkanNextAktivitasUserReading"
             android:id="@+id/btnNextCekReading"
             />
     </LinearLayout>

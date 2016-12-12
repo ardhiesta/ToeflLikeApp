@@ -1,17 +1,19 @@
 package com.example.djakaumbarawurung.persipantestcept;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.NarasiReading;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.OpsiReading;
-import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.PertanyaanReading;
+import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.SoalReading;
+import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.ReadingLog;
 import com.example.djakaumbarawurung.persipantestcept.database.DataSource_PenghubungTabel;
 
 import java.util.ArrayList;
@@ -23,9 +25,8 @@ public class ActivityKuisReading extends AppCompatActivity {
     int indexNarasi = 0;
     int indexPertanyaan = 0;
     String jawabanUser = "";
-    //    ArrayList<ReadingLog> aktivitasUserDikuisReading = new ArrayList<>();
-    boolean reCheckJawaban = false;
-//    int indexAktivitasUser = 0;
+    ArrayList<ReadingLog> aktivitasUserDiKuisReading = new ArrayList<>();
+    //    int indexAktivitasUser = 0;
     Button bNextReading;
 
     @Override
@@ -35,7 +36,7 @@ public class ActivityKuisReading extends AppCompatActivity {
 
         dataSource_penghubungTabel = new DataSource_PenghubungTabel(this);
         dataSource_penghubungTabel.open();
-        narasiReadingArrayList = dataSource_penghubungTabel.ambilNaskahReading();
+        narasiReadingArrayList = dataSource_penghubungTabel.ambilNarasiReading();
 
         TvNarasi = (TextView) findViewById(R.id.TvNarasi);
         TvSoal = (TextView) findViewById(R.id.TVPertanyaanReading);
@@ -57,10 +58,10 @@ public class ActivityKuisReading extends AppCompatActivity {
     public void tampilkanPertanyaan(int indexNarasi, int indexPertanyaan) {
         NarasiReading narasiReading = narasiReadingArrayList.get(indexNarasi);
         TvNarasi.setText(narasiReading.getNarasi());
-        ArrayList<PertanyaanReading> pertanyaanReadingArrayList = narasiReading.getPertanyaanReadingArraylist();
-        PertanyaanReading pertanyaanReading = pertanyaanReadingArrayList.get(indexPertanyaan);
-        TvSoal.setText(pertanyaanReading.getPetanyaan());
-        ArrayList<OpsiReading> opsiReadingArrayList = pertanyaanReading.getOpsiReadingArrayList();
+        ArrayList<SoalReading> soalReadingArrayList = narasiReading.getSoalReadingArrayList();
+        SoalReading soalReading = soalReadingArrayList.get(indexPertanyaan);
+        TvSoal.setText(soalReading.getPetanyaan());
+        ArrayList<OpsiReading> opsiReadingArrayList = soalReading.getOpsiReadingArrayList();
         for (int i = 0; i < opsiReadingArrayList.size(); i++) {
             OpsiReading opsiReading = opsiReadingArrayList.get(i);
             if (opsiReading.getOpsi().toLowerCase().startsWith("a")) {
@@ -77,36 +78,47 @@ public class ActivityKuisReading extends AppCompatActivity {
     }
 
     public void tampilkanPertanyaanReadingSelanjutnya(View view) {
-        if (!jawabanUser.equals("")) {
-//            ReadingLog readingLog = new ReadingLog();
-//            readingLog.setNarasi(TvNarasi.getText().toString());
-//            readingLog.setPertanyaan(TvSoal.getText().toString());
-//            readingLog.setJawabanUser(jawabanUser);
-//            readingLog.setKunci(narasiReadingArrayList.get(indexNarasi).getPertanyaanReadingArraylist().get(indexPertanyaan).getJawaban());
-//            HashMap<String, String> hashMap = new HashMap<>();
-//            hashMap.put("a", TvOpsi1.getText().toString());
-//            hashMap.put("b", TvOpsi2.getText().toString());
-//            hashMap.put("c", TvOpsi3.getText().toString());
-//            hashMap.put("d", TvOpsi4.getText().toString());
-//            readingLog.setOpsi(hashMap);
+        // tombol Next setelah sampai pada pertanyaan terakhir untuk narasi terakhir akan menampilkan activityCekJawaban
+        if (bNextReading.getText().toString().equalsIgnoreCase("CHECK ANSWER")) {
+            Intent intent = new Intent(ActivityKuisReading.this, ActivityCekJawabanReading.class);
+            intent.putParcelableArrayListExtra("aktivitasUser", aktivitasUserDiKuisReading);
+            startActivity(intent);
+            finish();
+        } else {
+            if (!jawabanUser.equals("")) {
+                ReadingLog readingLog = new ReadingLog();
+                readingLog.setNarasi(TvNarasi.getText().toString());
+                readingLog.setPertanyaan(TvSoal.getText().toString());
+                readingLog.setJawabanUser(jawabanUser);
+                NarasiReading narasiReading = narasiReadingArrayList.get(indexNarasi);
+                SoalReading soalReading = narasiReading.getSoalReadingArrayList().get(indexPertanyaan);
+                readingLog.setKunci(soalReading.getJawaban());
+                readingLog.setPenjelasan(soalReading.getPenjelasan());
 
 
-            if (indexPertanyaan < narasiReadingArrayList.get(indexNarasi).getPertanyaanReadingArraylist().size() - 1) {
-//                aktivitasUserDikuisReading.add(readingLog);
-                netralkanOpsi();
-                indexPertanyaan++;
-                tampilkanPertanyaan(indexNarasi, indexPertanyaan);
-
-            } else {
-                if (indexNarasi < narasiReadingArrayList.size() - 1) {
-//                    aktivitasUserDikuisReading.add(readingLog);
+                if (indexPertanyaan < narasiReadingArrayList.get(indexNarasi).getSoalReadingArrayList().size() - 1) {
+                    aktivitasUserDiKuisReading.add(readingLog);
                     netralkanOpsi();
-                    indexNarasi++;
-                    indexPertanyaan = 0;
+                    indexPertanyaan++;
                     tampilkanPertanyaan(indexNarasi, indexPertanyaan);
+
+                } else {
+                    if (indexNarasi < narasiReadingArrayList.size() - 1) {
+                        aktivitasUserDiKuisReading.add(readingLog);
+                        netralkanOpsi();
+                        indexNarasi++;
+                        indexPertanyaan = 0;
+                        tampilkanPertanyaan(indexNarasi, indexPertanyaan);
+                    } else {
+                        // jika sudah sampai pada narasi terakhir dan pertanyaan terakhir tombol next berubah jadi cek jawaban
+                        if (indexPertanyaan == narasiReadingArrayList.get(indexNarasi).getSoalReadingArrayList().size() - 1) {
+                            bNextReading.setText("CHECK ANSWER");
+                            aktivitasUserDiKuisReading.add(readingLog);
+                        }
+                    }
                 }
             }
-        } 
+        }
     }
 
     public void opsi1KlikReading(View view) {
