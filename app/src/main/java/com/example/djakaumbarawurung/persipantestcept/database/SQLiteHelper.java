@@ -3,11 +3,7 @@ package com.example.djakaumbarawurung.persipantestcept.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.SyncStateContract;
-import android.renderscript.ScriptIntrinsicYuvToRGB;
 import android.util.Log;
-
-import java.security.PublicKey;
 
 /**
  * Created by Djaka Umbara Wurung on 7/29/2016.
@@ -134,7 +130,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
      * penjelasan
      * id_bacaan
      */
-    private static final String CREATE_TABLE_TANYA_READING = " create table "
+    private static final String CREATE_TABLE_SOAL_READING = " create table "
             + TABLE_SOAL_READING + " ("
             + COLUMN_ID_READING             + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + COLUMN_PERTANYAAN_READING     + " TEXT NOT NULL, " +
@@ -201,7 +197,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         database.execSQL(CREATE_TABLE_OPSI_GRAMMAR);
         database.execSQL(CREATE_TABLE_LOG_GRAMMAR);
         database.execSQL(CREATE_TABLE_NARASI_READING);
-        database.execSQL(CREATE_TABLE_TANYA_READING);
+        database.execSQL(CREATE_TABLE_SOAL_READING);
         database.execSQL(CREATE_TABLE_OPSI_READING);
         database.execSQL(CREATE_TABLE_LOG_READING);
     }
