@@ -24,9 +24,9 @@ public class ActivityQuiz extends AppCompatActivity {
     }
 
     public void paketSoalListening(View view) {
-//        Intent intent = new Intent(ActivityQuiz.this, ActivityListening.class);
+        Intent intent = new Intent(ActivityQuiz.this, ActivityListening.class);
 
-        Intent intent = new Intent(ActivityQuiz.this, ActivityCekJawabanListening.class);
+//        Intent intent = new Intent(ActivityQuiz.this, ActivityCekJawabanListening.class);
         startActivity(intent);
     }
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.JawabanUser;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class ActivityListening extends AppCompatActivity {
 
@@ -21,6 +22,10 @@ public class ActivityListening extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     String jawabanUser = "";
     ArrayList<JawabanUser> arJul = new ArrayList<>();
+    TextView tvTime, tvTime0;
+    private double startTime = 0;
+    private double finalTime = 0;
+    private Handler myHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,8 @@ public class ActivityListening extends AppCompatActivity {
         ListeningStart = (Button) findViewById(R.id.ListeningStart);
         bCheckListening = (Button) findViewById(R.id.bCheckListening);
         bCheckListening.setVisibility(View.INVISIBLE); //tombol cek jawaban dihidden dulu
+        tvTime = (TextView) findViewById(R.id.tvTime);
+        tvTime0 = (TextView) findViewById(R.id.tvTime0);
 
         TvSoalListening.setText("");
         TvOpsi1Listening.setText("");
@@ -151,9 +158,43 @@ public class ActivityListening extends AppCompatActivity {
     public void StartListening(View view) {
         this.mediaPlayer.start();
 
+        finalTime = mediaPlayer.getDuration();
+        startTime = mediaPlayer.getCurrentPosition();
+
         ListeningStart.setVisibility(View.INVISIBLE);
         TvSoalListening.setText("listening to the instruction .. .");
+
+        tvTime0.setText(String.format("%d min, %d sec",
+                TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
+                TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)
+                                finalTime)))
+        );
+
+        tvTime.setText(String.format("%d min, %d sec",
+                TimeUnit.MILLISECONDS.toMinutes((long) startTime),
+                TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)
+                                startTime)))
+        );
+
+        myHandler.postDelayed(UpdateSongTime,100);
     }
+
+    //TODO: lanjutkan
+    private Runnable UpdateSongTime = new Runnable() {
+        public void run() {
+            startTime = mediaPlayer.getCurrentPosition();
+            tvTime.setText(String.format("%d min, %d sec",
+                    TimeUnit.MILLISECONDS.toMinutes((long) startTime),
+                    TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
+                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
+                                    toMinutes((long) startTime)))
+            );
+//            seekbar.setProgress((int)startTime);
+            myHandler.postDelayed(this, 100);
+        }
+    };
 
     public int getRawResIdByName(String resName) {
         String pkgName = this.getPackageName();

@@ -78,7 +78,8 @@ public class ReadingLog implements Parcelable {
         penjelasan = in.readString();
     }
 
-    public static final Parcelable.Creator<ReadingLog> CREATOR = new Parcelable.Creator<ReadingLog>() {
+    public static final Parcelable.Creator<ReadingLog> CREATOR =
+            new Parcelable.Creator<ReadingLog>() {
         @Override
         public ReadingLog createFromParcel(Parcel source) {
             return new ReadingLog(source);

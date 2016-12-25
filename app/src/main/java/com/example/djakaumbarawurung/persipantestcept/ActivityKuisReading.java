@@ -124,25 +124,25 @@ public class ActivityKuisReading extends AppCompatActivity {
     public void opsi1KlikReading(View view) {
         //ambil Abjad Pilihan User
         setOpsi(TvOpsi1);
-        jawabanUser = "a";
+        jawabanUser = TvOpsi1.getText().toString();
         bNextReading.setEnabled(true);
     }
 
     public void opsi2KlikReading(View view) {
         setOpsi(TvOpsi2);
-        jawabanUser = "b";
+        jawabanUser = TvOpsi2.getText().toString();
         bNextReading.setEnabled(true);
     }
 
     public void opsi3KlikReading(View view) {
         setOpsi(TvOpsi3);
-        jawabanUser = "c";
+        jawabanUser = TvOpsi3.getText().toString();
         bNextReading.setEnabled(true);
     }
 
     public void opsi4KlikReading(View view) {
         setOpsi(TvOpsi4);
-        jawabanUser = "d";
+        jawabanUser = TvOpsi4.getText().toString();
         bNextReading.setEnabled(true);
     }
 

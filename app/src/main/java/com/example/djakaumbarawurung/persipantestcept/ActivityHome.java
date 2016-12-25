@@ -17,7 +17,6 @@ public class ActivityHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
         dataSource_penghubungTabel = new DataSource_PenghubungTabel(this);
         dataSource_penghubungTabel.open();
 
