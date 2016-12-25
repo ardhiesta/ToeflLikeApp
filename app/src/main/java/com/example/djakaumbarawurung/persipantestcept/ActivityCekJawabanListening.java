@@ -8,54 +8,54 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Listening;
+import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.ListeningLog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ActivityCekJawabanListening extends AppCompatActivity {
     ArrayList<Listening> arListening = new ArrayList<>();
-    TextView tvQuestion, tvOpsi1, tvOpsi2, tvOpsi3;//, tvOpsi4;
+//    TextView tvQuestion, tvOpsi1, tvOpsi2, tvOpsi3;
     int currentQuestion = 0;
+    ArrayList<ListeningLog> listeningLogArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cek_jawaban_listening);
+        setContentView(R.layout.activity_cek_jawaban_listening_r2);
 
-        tvQuestion = (TextView) findViewById(R.id.TvSoalListeningCek);
-        tvOpsi1 = (TextView) findViewById(R.id.TvOpsi1ListeningCek);
-        tvOpsi2 = (TextView) findViewById(R.id.TvOpsi2ListeningCek);
-        tvOpsi3 = (TextView) findViewById(R.id.TvOpsi3ListeningCek);
-//        tvOpsi4 = (TextView) findViewById(R.id.TvOpsi4ListeningCek);
+//        tvQuestion = (TextView) findViewById(R.id.TvSoalListeningCek);
+//        tvOpsi1 = (TextView) findViewById(R.id.TvOpsi1ListeningCek);
+//        tvOpsi2 = (TextView) findViewById(R.id.TvOpsi2ListeningCek);
+//        tvOpsi3 = (TextView) findViewById(R.id.TvOpsi3ListeningCek);
 
-        setDummyData();
+//        setDummyData();
 
         showQuestion(0);
     }
 
     private void showQuestion(int index){
-        netralkanOpsi();
-        Listening l = arListening.get(index);
-        tvQuestion.setText(l.getQuestion());
-        tvOpsi1.setText(l.getOpsi().get("a"));
-        tvOpsi2.setText(l.getOpsi().get("b"));
-        tvOpsi3.setText(l.getOpsi().get("c"));
-//        tvOpsi4.setText(l.getOpsi().get("d"));
-        if (l.getRealAnswer().equalsIgnoreCase("a")){
-            setKunci(tvOpsi1);
-        } else if (l.getRealAnswer().equalsIgnoreCase("b")){
-            setKunci(tvOpsi2);
-        } else if (l.getRealAnswer().equalsIgnoreCase("c")){
-            setKunci(tvOpsi3);
-        }
-
-        if (l.getUserAnswer().equalsIgnoreCase("a")){
-            setOpsi(tvOpsi1);
-        } else if (l.getUserAnswer().equalsIgnoreCase("b")){
-            setOpsi(tvOpsi2);
-        } else if (l.getUserAnswer().equalsIgnoreCase("c")){
-            setOpsi(tvOpsi3);
-        }
+//        netralkanOpsi();
+//        Listening l = arListening.get(index);
+//        tvQuestion.setText(l.getQuestion());
+//        tvOpsi1.setText(l.getOpsi().get("a"));
+//        tvOpsi2.setText(l.getOpsi().get("b"));
+//        tvOpsi3.setText(l.getOpsi().get("c"));
+//        if (l.getRealAnswer().equalsIgnoreCase("a")){
+//            setKunci(tvOpsi1);
+//        } else if (l.getRealAnswer().equalsIgnoreCase("b")){
+//            setKunci(tvOpsi2);
+//        } else if (l.getRealAnswer().equalsIgnoreCase("c")){
+//            setKunci(tvOpsi3);
+//        }
+//
+//        if (l.getUserAnswer().equalsIgnoreCase("a")){
+//            setOpsi(tvOpsi1);
+//        } else if (l.getUserAnswer().equalsIgnoreCase("b")){
+//            setOpsi(tvOpsi2);
+//        } else if (l.getUserAnswer().equalsIgnoreCase("c")){
+//            setOpsi(tvOpsi3);
+//        }
     }
 
     public void nextCekListening(View view){
@@ -82,26 +82,13 @@ public class ActivityCekJawabanListening extends AppCompatActivity {
         tvOpsi.setTextColor(Color.parseColor("#303f9f"));
     }
 
-    public void netralkanOpsi() {
-        tvOpsi1.setTypeface(null, Typeface.NORMAL);
-        tvOpsi2.setTypeface(null, Typeface.NORMAL);
-        tvOpsi3.setTypeface(null, Typeface.NORMAL);
-//        tvOpsi4.setTypeface(null, Typeface.NORMAL);
-        tvOpsi1.setTextColor(Color.parseColor("#000000"));
-        tvOpsi2.setTextColor(Color.parseColor("#000000"));
-        tvOpsi3.setTextColor(Color.parseColor("#000000"));
-//        tvOpsi4.setTextColor((Color.parseColor("#000000")));
-    }
-
-//    private void setOpsi(TextView tvdipilih, TextView tvTdkDiplih1, TextView tvtdkDiplih2, TextView tvtdkdipilih3) {
-//        tvdipilih.setTypeface(null, Typeface.BOLD);
-//        tvTdkDiplih1.setTypeface(null, Typeface.NORMAL);
-//        tvtdkDiplih2.setTypeface(null, Typeface.NORMAL);
-//        tvtdkdipilih3.setTypeface(null, Typeface.NORMAL);
-//        tvdipilih.setTextColor(Color.parseColor("#303f9f"));
-//        tvTdkDiplih1.setTextColor(Color.parseColor("#000000"));
-//        tvtdkDiplih2.setTextColor((Color.parseColor("#000000")));
-//        tvtdkdipilih3.setTextColor(Color.parseColor("#000000"));
+//    public void netralkanOpsi() {
+//        tvOpsi1.setTypeface(null, Typeface.NORMAL);
+//        tvOpsi2.setTypeface(null, Typeface.NORMAL);
+//        tvOpsi3.setTypeface(null, Typeface.NORMAL);
+//        tvOpsi1.setTextColor(Color.parseColor("#000000"));
+//        tvOpsi2.setTextColor(Color.parseColor("#000000"));
+//        tvOpsi3.setTextColor(Color.parseColor("#000000"));
 //    }
 
     private void setDummyData(){

@@ -1,5 +1,6 @@
 package com.example.djakaumbarawurung.persipantestcept;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
@@ -11,18 +12,20 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.JawabanUser;
+import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.ListeningLog;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class ActivityListening extends AppCompatActivity {
 
-    TextView TvSoalListening, TvOpsi1Listening, TvOpsi2Listening, TvOpsi3Listening, TvOpsi4Listening;
+    TextView TvSoalListening, TvOpsi1Listening, TvOpsi2Listening,
+            TvOpsi3Listening, TvOpsi4Listening, tvTime;
     Button ListeningStart, bCheckListening;
     private MediaPlayer mediaPlayer;
     String jawabanUser = "";
-    ArrayList<JawabanUser> arJul = new ArrayList<>();
-    TextView tvTime, tvTime0;
+//    ArrayList<JawabanUser> arJul = new ArrayList<>();
+    ArrayList<ListeningLog> listeningLogArrayList = new ArrayList<>();
     private double startTime = 0;
     private double finalTime = 0;
     private Handler myHandler = new Handler();
@@ -41,7 +44,7 @@ public class ActivityListening extends AppCompatActivity {
         bCheckListening = (Button) findViewById(R.id.bCheckListening);
         bCheckListening.setVisibility(View.INVISIBLE); //tombol cek jawaban dihidden dulu
         tvTime = (TextView) findViewById(R.id.tvTime);
-        tvTime0 = (TextView) findViewById(R.id.tvTime0);
+        tvTime.setText("");
 
         TvSoalListening.setText("");
         TvOpsi1Listening.setText("");
@@ -68,10 +71,13 @@ public class ActivityListening extends AppCompatActivity {
             @Override
             public void run() {
                 //simpan dulu jawaban user dr pertanyaan 1
-                JawabanUser jul = new JawabanUser();
-                jul.setIdPertanyaan(1);
-                jul.setJawaban(jawabanUser);
-                arJul.add(jul);
+                ListeningLog listeningLog = new ListeningLog();
+                listeningLog.setPertanyaan("Question 1");
+                listeningLog.setJawabanUser(jawabanUser);
+                listeningLog.setKunci("a");
+                listeningLogArrayList.add(listeningLog);
+//                listeningLog.setPenjelasan();
+
                 netralkanOpsi();
 
                 TvSoalListening.setText("Question 2");
@@ -85,11 +91,12 @@ public class ActivityListening extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //simpan dulu jawaban user dr pertanyaan 1
-                JawabanUser jul = new JawabanUser();
-                jul.setIdPertanyaan(2);
-                jul.setJawaban(jawabanUser);
-                arJul.add(jul);
+                ListeningLog listeningLog = new ListeningLog();
+                listeningLog.setPertanyaan("Question 2");
+                listeningLog.setJawabanUser(jawabanUser);
+                listeningLog.setKunci("a");
+                listeningLogArrayList.add(listeningLog);
+
                 netralkanOpsi();
 
                 TvSoalListening.setText("Question 3");
@@ -103,11 +110,12 @@ public class ActivityListening extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //simpan dulu jawaban user dr pertanyaan 1
-                JawabanUser jul = new JawabanUser();
-                jul.setIdPertanyaan(3);
-                jul.setJawaban(jawabanUser);
-                arJul.add(jul);
+                ListeningLog listeningLog = new ListeningLog();
+                listeningLog.setPertanyaan("Question 3");
+                listeningLog.setJawabanUser(jawabanUser);
+                listeningLog.setKunci("a");
+                listeningLogArrayList.add(listeningLog);
+
                 netralkanOpsi();
 
                 TvSoalListening.setText("Question 4");
@@ -129,17 +137,23 @@ public class ActivityListening extends AppCompatActivity {
     }
 
     public void saveJawaban(View view) {
-        JawabanUser jul = new JawabanUser();
-        jul.setIdPertanyaan(4);
-        jul.setJawaban(jawabanUser);
-        arJul.add(jul);
+        ListeningLog listeningLog = new ListeningLog();
+        listeningLog.setPertanyaan("Question 4");
+        listeningLog.setJawabanUser(jawabanUser);
+        listeningLog.setKunci("a");
+        listeningLogArrayList.add(listeningLog);
+
         netralkanOpsi();
 
-        for (int i = 0; i < arJul.size(); i++) {
-            JawabanUser juls = arJul.get(i);
-            System.out.println(juls.getIdPertanyaan());
-            System.out.println(juls.getJawaban());
-        }
+//        for (int i = 0; i < arJul.size(); i++) {
+//            JawabanUser juls = arJul.get(i);
+//            System.out.println(juls.getIdPertanyaan());
+//            System.out.println(juls.getJawaban());
+//        }
+
+        Intent intent = new Intent(ActivityListening.this, ActivityCekJawabanListening.class);
+        intent.putParcelableArrayListExtra("aktivitasUser", listeningLogArrayList);
+        startActivity(intent);
     }
 
     public void netralkanOpsi() {
@@ -164,13 +178,6 @@ public class ActivityListening extends AppCompatActivity {
         ListeningStart.setVisibility(View.INVISIBLE);
         TvSoalListening.setText("listening to the instruction .. .");
 
-        tvTime0.setText(String.format("%d min, %d sec",
-                TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
-                TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
-                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)
-                                finalTime)))
-        );
-
         tvTime.setText(String.format("%d min, %d sec",
                 TimeUnit.MILLISECONDS.toMinutes((long) startTime),
                 TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
@@ -185,13 +192,13 @@ public class ActivityListening extends AppCompatActivity {
     private Runnable UpdateSongTime = new Runnable() {
         public void run() {
             startTime = mediaPlayer.getCurrentPosition();
+            double timeRemaining = finalTime - startTime;
             tvTime.setText(String.format("%d min, %d sec",
-                    TimeUnit.MILLISECONDS.toMinutes((long) startTime),
-                    TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
+                    TimeUnit.MILLISECONDS.toMinutes((long) timeRemaining),
+                    TimeUnit.MILLISECONDS.toSeconds((long) timeRemaining) -
                             TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
-                                    toMinutes((long) startTime)))
+                                    toMinutes((long) timeRemaining)))
             );
-//            seekbar.setProgress((int)startTime);
             myHandler.postDelayed(this, 100);
         }
     };
@@ -213,25 +220,25 @@ public class ActivityListening extends AppCompatActivity {
 
     public void opsi1ListeningKlik(View view) {
         //ambil Abjad Pilihan User
-        jawabanUser = "a";
+        jawabanUser = TvOpsi1Listening.getText().toString();
         setOpsi(TvOpsi1Listening, TvOpsi2Listening, TvOpsi3Listening, TvOpsi4Listening);
     }
 
     public void opsi2ListeningKlik(View view) {
         //ambil Abjad Pilihan User
-        jawabanUser = "b";
+        jawabanUser = TvOpsi2Listening.getText().toString();
         setOpsi(TvOpsi2Listening, TvOpsi1Listening, TvOpsi3Listening, TvOpsi4Listening);
     }
 
     public void opsi3ListeningKlik(View view) {
         //ambil Abjad Pilihan User
-        jawabanUser = "c";
+        jawabanUser = TvOpsi3Listening.getText().toString();
         setOpsi(TvOpsi3Listening, TvOpsi1Listening, TvOpsi2Listening, TvOpsi4Listening);
     }
 
     public void opsi4ListeningKlik(View view) {
         //ambil Abjad Pilihan User
-        jawabanUser = "d";
+        jawabanUser = TvOpsi4Listening.getText().toString();
         setOpsi(TvOpsi4Listening, TvOpsi1Listening, TvOpsi2Listening, TvOpsi3Listening);
     }
 

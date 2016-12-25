@@ -9,16 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ActivityListening">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/ListeningStart"
-        android:text="[time]"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:layout_marginRight="30dp"
-        android:id="@+id/tvTime0"
-        />
-
     <Button
         android:id="@+id/ListeningStart"
         android:layout_width="wrap_content"

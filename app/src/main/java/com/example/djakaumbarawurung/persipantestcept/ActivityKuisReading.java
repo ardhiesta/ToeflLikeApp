@@ -26,7 +26,6 @@ public class ActivityKuisReading extends AppCompatActivity {
     int indexPertanyaan = 0;
     String jawabanUser = "";
     ArrayList<ReadingLog> aktivitasUserDiKuisReading = new ArrayList<>();
-    //    int indexAktivitasUser = 0;
     Button bNextReading;
 
     @Override
