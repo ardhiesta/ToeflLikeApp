@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.JawabanUser;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.ListeningLog;
 
 import java.util.ArrayList;
@@ -145,12 +144,6 @@ public class ActivityListening extends AppCompatActivity {
 
         netralkanOpsi();
 
-//        for (int i = 0; i < arJul.size(); i++) {
-//            JawabanUser juls = arJul.get(i);
-//            System.out.println(juls.getIdPertanyaan());
-//            System.out.println(juls.getJawaban());
-//        }
-
         Intent intent = new Intent(ActivityListening.this, ActivityCekJawabanListening.class);
         intent.putParcelableArrayListExtra("aktivitasUser", listeningLogArrayList);
         startActivity(intent);
@@ -188,7 +181,6 @@ public class ActivityListening extends AppCompatActivity {
         myHandler.postDelayed(UpdateSongTime,100);
     }
 
-    //TODO: lanjutkan
     private Runnable UpdateSongTime = new Runnable() {
         public void run() {
             startTime = mediaPlayer.getCurrentPosition();
