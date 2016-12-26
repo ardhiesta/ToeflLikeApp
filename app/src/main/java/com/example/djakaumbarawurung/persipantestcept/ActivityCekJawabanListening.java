@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.ListeningLog;
+import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.UserLog;
 
 import java.util.ArrayList;
 
 public class ActivityCekJawabanListening extends AppCompatActivity {
     int indexAktivitasUser = 0;
-    ArrayList<ListeningLog> listeningLogArrayList = new ArrayList<>();
+    ArrayList<UserLog> userLogArrayList = new ArrayList<>();
     TextView tvSoalCekListening, tvJawabanUserCekListening, tvKunciCekListening;
 
     @Override
@@ -22,20 +22,20 @@ public class ActivityCekJawabanListening extends AppCompatActivity {
         tvJawabanUserCekListening = (TextView) findViewById(R.id.tvJawabanUserCekListening);
         tvSoalCekListening = (TextView) findViewById(R.id.tvSoalCekListening);
         tvKunciCekListening = (TextView) findViewById(R.id.tvKunciCekListening);
-        listeningLogArrayList = getIntent().getParcelableArrayListExtra("aktivitasUser");
+        userLogArrayList = getIntent().getParcelableArrayListExtra("aktivitasUser");
 
         showQuestion(0);
     }
 
     private void showQuestion(int index){
-        ListeningLog listeningLog = listeningLogArrayList.get(index);
+        UserLog userLog = userLogArrayList.get(index);
         tvSoalCekListening.setText("Question "+(index + 1));
-        tvJawabanUserCekListening.setText(listeningLog.getJawabanUser());
-        tvKunciCekListening.setText(listeningLog.getKunci());
+        tvJawabanUserCekListening.setText(userLog.getJawabanUser());
+        tvKunciCekListening.setText(userLog.getKunci());
     }
 
     public void nextCekListening(View view){
-        if (indexAktivitasUser < listeningLogArrayList.size() - 1){
+        if (indexAktivitasUser < userLogArrayList.size() - 1){
             indexAktivitasUser++;
             showQuestion(indexAktivitasUser);
         }

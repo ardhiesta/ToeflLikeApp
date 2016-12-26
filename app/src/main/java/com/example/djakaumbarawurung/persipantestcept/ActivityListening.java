@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.ListeningLog;
+import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.UserLog;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +24,7 @@ public class ActivityListening extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     String jawabanUser = "";
 //    ArrayList<JawabanUser> arJul = new ArrayList<>();
-    ArrayList<ListeningLog> listeningLogArrayList = new ArrayList<>();
+    ArrayList<UserLog> userLogArrayList = new ArrayList<>();
     private double startTime = 0;
     private double finalTime = 0;
     private Handler myHandler = new Handler();
@@ -70,11 +70,11 @@ public class ActivityListening extends AppCompatActivity {
             @Override
             public void run() {
                 //simpan dulu jawaban user dr pertanyaan 1
-                ListeningLog listeningLog = new ListeningLog();
-                listeningLog.setPertanyaan("Question 1");
-                listeningLog.setJawabanUser(jawabanUser);
-                listeningLog.setKunci("a");
-                listeningLogArrayList.add(listeningLog);
+                UserLog userLog = new UserLog();
+                userLog.setPertanyaan("Question 1");
+                userLog.setJawabanUser(jawabanUser);
+                userLog.setKunci("a");
+                userLogArrayList.add(userLog);
 //                listeningLog.setPenjelasan();
 
                 netralkanOpsi();
@@ -90,11 +90,11 @@ public class ActivityListening extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ListeningLog listeningLog = new ListeningLog();
-                listeningLog.setPertanyaan("Question 2");
-                listeningLog.setJawabanUser(jawabanUser);
-                listeningLog.setKunci("a");
-                listeningLogArrayList.add(listeningLog);
+                UserLog userLog = new UserLog();
+                userLog.setPertanyaan("Question 2");
+                userLog.setJawabanUser(jawabanUser);
+                userLog.setKunci("a");
+                userLogArrayList.add(userLog);
 
                 netralkanOpsi();
 
@@ -109,11 +109,11 @@ public class ActivityListening extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ListeningLog listeningLog = new ListeningLog();
-                listeningLog.setPertanyaan("Question 3");
-                listeningLog.setJawabanUser(jawabanUser);
-                listeningLog.setKunci("a");
-                listeningLogArrayList.add(listeningLog);
+                UserLog userLog = new UserLog();
+                userLog.setPertanyaan("Question 3");
+                userLog.setJawabanUser(jawabanUser);
+                userLog.setKunci("a");
+                userLogArrayList.add(userLog);
 
                 netralkanOpsi();
 
@@ -136,16 +136,16 @@ public class ActivityListening extends AppCompatActivity {
     }
 
     public void saveJawaban(View view) {
-        ListeningLog listeningLog = new ListeningLog();
-        listeningLog.setPertanyaan("Question 4");
-        listeningLog.setJawabanUser(jawabanUser);
-        listeningLog.setKunci("a");
-        listeningLogArrayList.add(listeningLog);
+        UserLog userLog = new UserLog();
+        userLog.setPertanyaan("Question 4");
+        userLog.setJawabanUser(jawabanUser);
+        userLog.setKunci("a");
+        userLogArrayList.add(userLog);
 
         netralkanOpsi();
 
         Intent intent = new Intent(ActivityListening.this, ActivityCekJawabanListening.class);
-        intent.putParcelableArrayListExtra("aktivitasUser", listeningLogArrayList);
+        intent.putParcelableArrayListExtra("aktivitasUser", userLogArrayList);
         startActivity(intent);
     }
 

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.UserLog;
 import com.example.djakaumbarawurung.persipantestcept.database.DataSource_PenghubungTabel;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Opsi;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Grammar;
@@ -76,7 +77,7 @@ public class ActivityKuisGrammar extends AppCompatActivity {
     }
 
     private void bentukKuis(int idpertanyaan) {
-        ArrayList<Opsi> opsiArrayList = dataSource_penghubungTabel.ambilOpsiSesuaiPertanyaan(idpertanyaan);
+        ArrayList<Opsi> opsiArrayList = dataSource_penghubungTabel.ambilOpsiGrammarSesuaiIdSoal(idpertanyaan);
 
         Grammar pertanyaan = dataSource_penghubungTabel.ambilpertanyaanSesuaiId(idpertanyaan);
         TvSoal.setText(pertanyaan.getPertanyaan());
@@ -141,25 +142,6 @@ public class ActivityKuisGrammar extends AppCompatActivity {
         TvOpsi3.setTextColor(Color.parseColor("#000000"));
         TvOpsi4.setTextColor((Color.parseColor("#000000")));
     }
-
-
-    // untuk menampilkan penjelasan
-
-//    public void tampilkanPenjelasan(View view){
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        String penjelasan = dataSource_penghubungTabel.ambilPenjelasanSesuaiId(alidPertanyaan.get(urutanPertanyaanSkrng));
-//        builder.setMessage(penjelasan).setTitle("penjelasan");
-//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int which) {
-//
-//            }
-//
-//        });
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
-//    }
-
 
 // METHOD UNTUK NEXT
     public void tampilkanPertanyaanSelanjutnya(View view) {

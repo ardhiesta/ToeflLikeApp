@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by linuxluv on 12/25/16.
  */
 
-public class ListeningLog implements Parcelable {
+public class UserLog implements Parcelable {
     String pertanyaan;
     String kunci;
     String jawabanUser;
@@ -45,24 +45,24 @@ public class ListeningLog implements Parcelable {
         this.penjelasan = penjelasan;
     }
 
-    public ListeningLog(){}
+    public UserLog(){}
 
-    protected ListeningLog(Parcel in) {
+    protected UserLog(Parcel in) {
         pertanyaan = in.readString();
         kunci = in.readString();
         jawabanUser = in.readString();
         penjelasan = in.readString();
     }
 
-    public static final Creator<ListeningLog> CREATOR = new Creator<ListeningLog>() {
+    public static final Creator<UserLog> CREATOR = new Creator<UserLog>() {
         @Override
-        public ListeningLog createFromParcel(Parcel in) {
-            return new ListeningLog(in);
+        public UserLog createFromParcel(Parcel in) {
+            return new UserLog(in);
         }
 
         @Override
-        public ListeningLog[] newArray(int size) {
-            return new ListeningLog[size];
+        public UserLog[] newArray(int size) {
+            return new UserLog[size];
         }
     };
 

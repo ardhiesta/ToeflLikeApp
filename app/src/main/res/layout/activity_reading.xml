@@ -99,13 +99,6 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
-        <!--<Button-->
-            <!--android:id="@+id/BbackReading"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="0.5"-->
-            <!--android:text="back" />-->
-
         <!-- redesign: hanya bisa next, tidak bisa back ke pertanyaan sebelumnya -->
         <Button
             android:id="@+id/bNextReading"

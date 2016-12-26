@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Grammar;
+import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Grammar2;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.NarasiReading;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Opsi;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.OpsiReading;
@@ -37,7 +38,7 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
 
 
     // ambil semua opsi grammar berdasarkan pertanyaan
-    public ArrayList<Opsi> ambilOpsiSesuaiPertanyaan(int idPertanyaan) {
+    public ArrayList<Opsi> ambilOpsiGrammarSesuaiIdSoal(int idPertanyaan) {
         ArrayList<Opsi> alOpsi = new ArrayList<>();
         Cursor cursor = database.rawQuery(" select * from " + SQLiteHelper.TABLE_OPSI_GRAMMAR + " where "
                         + SQLiteHelper.COLUMN_ID_GRAMMAR + " = ? ",
@@ -182,6 +183,25 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
         return tanya;
     }
 
+    // mengambil id grammar yang sesuai kondisi
+    public Grammar2 ambilGrammarSesuaiId(int Id_Grammar) {
+        Grammar2 grammar2 = new Grammar2();
+        Cursor cursor = database.rawQuery("select * from " + SQLiteHelper.TABLE_GRAMMAR + " where " + SQLiteHelper.COLUMN_ID_GRAMMAR + " = ? "
+                , new String[]{String.valueOf(Id_Grammar)}
+        );
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            grammar2.setId_soal(cursor.getInt(0));
+            grammar2.setPertanyaan(cursor.getString(1));
+            grammar2.setJawaban(cursor.getString(2));
+            grammar2.setPenjelasan(cursor.getString(3));
+            grammar2.setOpsiArrayList(ambilOpsiGrammarSesuaiIdSoal(Id_Grammar));
+            cursor.moveToNext();
+        }
+
+        return grammar2;
+    }
+
     // Ambil pertanyaan sesuai id ( semua data )
     public ArrayList<Integer> mengambilsemuaIdGrammar() {
         ArrayList<Integer> alId = new ArrayList<>();
@@ -194,7 +214,6 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
         }
         return alId;
     }
-
 
     // mengambil penjelasan sesuai id ( nanti diubah)
     public String ambilPenjelasanSesuaiId(int pertanyaan) {
