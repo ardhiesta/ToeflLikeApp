@@ -25,7 +25,8 @@
         <activity android:name=".ActivityCekJawabanListening" />
         <activity android:name=".ActivityCekJawabanReading" />
         <activity android:name=".ActivityHasilKuis" />
-        <activity android:name=".ActivityKuisGrammarV2"></activity>
+        <activity android:name=".ActivityKuisGrammarV2" />
+        <activity android:name=".ActivityCekJawabanGrammar"></activity>
     </application>
 
 </manifest>
