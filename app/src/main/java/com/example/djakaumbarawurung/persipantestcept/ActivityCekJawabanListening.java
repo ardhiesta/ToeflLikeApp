@@ -24,7 +24,7 @@ public class ActivityCekJawabanListening extends AppCompatActivity {
         tvKunciCekListening = (TextView) findViewById(R.id.tvKunciCekListening);
         userLogArrayList = getIntent().getParcelableArrayListExtra("aktivitasUser");
 
-        showQuestion(0);
+        showQuestion(indexAktivitasUser);
     }
 
     private void showQuestion(int index){

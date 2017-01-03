@@ -70,6 +70,10 @@ public class ActivityCekJawabanReading extends AppCompatActivity {
         if (indexAktivitasUser > 0){
             indexAktivitasUser--;
             tampilkanAktivitasUserReading(indexAktivitasUser);
+
+            if (btnNextReading.getText().toString().equalsIgnoreCase("show result")){
+                btnNextReading.setText("NEXT");
+            }
         }
     }
 

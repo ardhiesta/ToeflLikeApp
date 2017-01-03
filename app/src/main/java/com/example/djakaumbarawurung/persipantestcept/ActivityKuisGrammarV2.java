@@ -1,5 +1,6 @@
 package com.example.djakaumbarawurung.persipantestcept;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -141,8 +142,12 @@ public class ActivityKuisGrammarV2 extends AppCompatActivity {
     public void tampilkanPertanyaanGrammarSelanjutnya(View view) {
         // tombol Next setelah sampai pada pertanyaan terakhir untuk narasi terakhir akan menampilkan activityCekJawaban
         if (bNext.getText().toString().equalsIgnoreCase("CHECK ANSWER")) {
-            System.out.println(userLogArrayList.size());
-            System.out.println("");
+//            System.out.println(userLogArrayList.size());
+//            System.out.println("");
+
+            Intent intent = new Intent(ActivityKuisGrammarV2.this, ActivityCekJawabanGrammar.class);
+            intent.putParcelableArrayListExtra("aktivitasUser", userLogArrayList);
+            startActivity(intent);
         } else {
             if (!jawabanUser.equals("")) {
                 UserLog userLog = new UserLog();
