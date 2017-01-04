@@ -10,58 +10,46 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Grammar2;
+import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Opsi;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.UserLog;
 import com.example.djakaumbarawurung.persipantestcept.database.DataSource_PenghubungTabel;
-import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Opsi;
-import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Grammar;
-
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 public class ActivityKuisGrammar extends AppCompatActivity {
-    TextView TvSoal, TvOpsi1, TvOpsi2, TvOpsi3, TvOpsi4, TvPenjelasan;
-    Button BCheck, Bnext, Bback;
-    DataSource_PenghubungTabel dataSource_penghubungTabel;
-    ArrayList<Integer> alidPertanyaan;
-    int urutanPertanyaanSkrng;
+    TextView tvSoal, tvOpsi1,
+            tvOpsi2, tvOpsi3, tvOpsi4;
     String jawabanUser = "";
-    boolean sudahCekJawaban = false;
+    DataSource_PenghubungTabel dataSource_penghubungTabel;
+    Button bNext;
+    ArrayList<Integer> alidPertanyaan = new ArrayList<>();
+    int indexGrammar = 0;
+    ArrayList<UserLog> userLogArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grammar);
+        setContentView(R.layout.activity_kuis_grammar);
 
-        TvSoal = (TextView) findViewById(R.id.TVPertanyaan);
-        TvOpsi1 = (TextView) findViewById(R.id.TVpilihan1);
-        TvOpsi2 = (TextView) findViewById(R.id.TVpilihan2);
-        TvOpsi3 = (TextView) findViewById(R.id.TVpilihan3);
-        TvOpsi4 = (TextView) findViewById(R.id.TVpilihan4);
-        TvPenjelasan = (TextView) findViewById(R.id.TvPenjelasan);
-
-
-        BCheck = (Button) findViewById(R.id.Btncek);
-        Bnext = (Button) findViewById(R.id.BtnNext);
-        Bback = (Button) findViewById(R.id.BtnBack);
-
+        tvSoal = (TextView) findViewById(R.id.tvPertanyaanGrammar);
+        tvOpsi1 = (TextView) findViewById(R.id.tvPilihan1Grammar);
+        tvOpsi2 = (TextView) findViewById(R.id.tvPilihan2Grammar);
+        tvOpsi3 = (TextView) findViewById(R.id.tvPilihan3Grammar);
+        tvOpsi4 = (TextView) findViewById(R.id.tvPilihan4Grammar);
+        bNext = (Button) findViewById(R.id.bNextGrammar);
 
         dataSource_penghubungTabel = new DataSource_PenghubungTabel(this);
         dataSource_penghubungTabel.open();
 
-
-
         alidPertanyaan = dataSource_penghubungTabel.mengambilsemuaIdGrammar();
         acakIdPertanyaan();
 
-        BCheck.setEnabled(false);
-        Bback.setEnabled(false);
-        TvPenjelasan.setText("");
-
-
+        //tombol next tidak bisa diklik kecuali user telah memilih sebuah opsi untuk menjawab soal
+        bNext.setEnabled(false);
     }
-
 
     private void acakIdPertanyaan() {
         long seed = System.nanoTime();
@@ -73,182 +61,112 @@ public class ActivityKuisGrammar extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Pertanyaan Sudah Habis", Toast.LENGTH_LONG).show();
         }
-
     }
 
     private void bentukKuis(int idpertanyaan) {
-        ArrayList<Opsi> opsiArrayList = dataSource_penghubungTabel.ambilOpsiGrammarSesuaiIdSoal(idpertanyaan);
-
-        Grammar pertanyaan = dataSource_penghubungTabel.ambilpertanyaanSesuaiId(idpertanyaan);
-        TvSoal.setText(pertanyaan.getPertanyaan());
+        Grammar2 grammar2 = dataSource_penghubungTabel.ambilGrammarSesuaiId(idpertanyaan);
+        tvSoal.setText(grammar2.getPertanyaan());
+        ArrayList<Opsi> opsiArrayList = grammar2.getOpsiArrayList();
         for (int i = 0; i < opsiArrayList.size(); i++) {
             Opsi opsi = opsiArrayList.get(i);
             if (opsi.getOpsi().toLowerCase().startsWith("a")) {
-                TvOpsi1.setText(opsi.getOpsi());
+                tvOpsi1.setText(opsi.getOpsi());
             } else if ((opsi.getOpsi().toLowerCase().startsWith("b"))) {
-                TvOpsi2.setText(opsi.getOpsi());
+                tvOpsi2.setText(opsi.getOpsi());
             } else if (opsi.getOpsi().toLowerCase().startsWith("c")) {
-                TvOpsi3.setText(opsi.getOpsi());
+                tvOpsi3.setText(opsi.getOpsi());
             } else {
-                TvOpsi4.setText(opsi.getOpsi());
-
+                tvOpsi4.setText(opsi.getOpsi());
             }
-
         }
     }
 
-    public void opsi1klik(View view) {
+    public void opsi1KlikGrammar(View view) {
         //ambil Abjad Pilihan User
-        jawabanUser = "a";
-        setOpsi(TvOpsi1, TvOpsi2, TvOpsi3, TvOpsi4);
+        setOpsi(tvOpsi1);
+        jawabanUser = tvOpsi1.getText().toString();
+        bNext.setEnabled(true);
     }
 
-    public void opsiKlik2(View view) {
-        jawabanUser = "b";
-        setOpsi(TvOpsi2, TvOpsi1, TvOpsi3, TvOpsi4);
+    public void opsi2KlikGrammar(View view) {
+        setOpsi(tvOpsi2);
+        jawabanUser = tvOpsi2.getText().toString();
+        bNext.setEnabled(true);
     }
 
-    public void opsiKlik3(View view) {
-        jawabanUser = "c";
-        setOpsi(TvOpsi3, TvOpsi1, TvOpsi2, TvOpsi4);
+    public void opsi3KlikGrammar(View view) {
+        setOpsi(tvOpsi3);
+        jawabanUser = tvOpsi3.getText().toString();
+        bNext.setEnabled(true);
     }
 
-    public void opsiKlik4(View view) {
-        jawabanUser = "d";
-        setOpsi(TvOpsi4, TvOpsi1, TvOpsi2, TvOpsi3);
+    public void opsi4KlikGrammar(View view) {
+        setOpsi(tvOpsi4);
+        jawabanUser = tvOpsi4.getText().toString();
+        bNext.setEnabled(true);
     }
 
-    private void setOpsi(TextView tvdipilih, TextView tvTdkDiplih1, TextView tvtdkDiplih2, TextView tvtdkdipilih3) {
+    private void setOpsi(TextView tvdipilih) {
+        netralkanOpsi();
         tvdipilih.setTypeface(null, Typeface.BOLD);
-        tvTdkDiplih1.setTypeface(null, Typeface.NORMAL);
-        tvtdkDiplih2.setTypeface(null, Typeface.NORMAL);
-        tvtdkdipilih3.setTypeface(null, Typeface.NORMAL);
         tvdipilih.setTextColor(Color.parseColor("#303f9f"));
-        tvTdkDiplih1.setTextColor(Color.parseColor("#000000"));
-        tvtdkDiplih2.setTextColor((Color.parseColor("#000000")));
-        tvtdkdipilih3.setTextColor(Color.parseColor("#000000"));
     }
-
 
     public void netralkanOpsi() {
         jawabanUser = "";
+        bNext.setEnabled(false);
 
-        TvOpsi1.setTypeface(null, Typeface.NORMAL);
-        TvOpsi2.setTypeface(null, Typeface.NORMAL);
-        TvOpsi3.setTypeface(null, Typeface.NORMAL);
-        TvOpsi4.setTypeface(null, Typeface.NORMAL);
-        TvOpsi1.setTextColor(Color.parseColor("#000000"));
-        TvOpsi2.setTextColor(Color.parseColor("#000000"));
-        TvOpsi3.setTextColor(Color.parseColor("#000000"));
-        TvOpsi4.setTextColor((Color.parseColor("#000000")));
+        tvOpsi1.setTypeface(null, Typeface.NORMAL);
+        tvOpsi2.setTypeface(null, Typeface.NORMAL);
+        tvOpsi3.setTypeface(null, Typeface.NORMAL);
+        tvOpsi4.setTypeface(null, Typeface.NORMAL);
+        tvOpsi1.setTextColor(Color.parseColor("#000000"));
+        tvOpsi2.setTextColor(Color.parseColor("#000000"));
+        tvOpsi3.setTextColor(Color.parseColor("#000000"));
+        tvOpsi4.setTextColor((Color.parseColor("#000000")));
     }
 
-// METHOD UNTUK NEXT
-    public void tampilkanPertanyaanSelanjutnya(View view) {
-        if (!sudahCekJawaban) {
+    @Override
+    protected void onResume() {
+        dataSource_penghubungTabel.open();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        dataSource_penghubungTabel.close();
+        super.onPause();
+    }
+
+    public void tampilkanPertanyaanGrammarSelanjutnya(View view) {
+        // tombol Next setelah sampai pada pertanyaan terakhir untuk narasi terakhir akan menampilkan activityCekJawaban
+        if (bNext.getText().toString().equalsIgnoreCase("CHECK ANSWER")) {
+//            System.out.println(userLogArrayList.size());
+//            System.out.println("");
+
+            Intent intent = new Intent(ActivityKuisGrammar.this, ActivityCekJawabanGrammar.class);
+            intent.putParcelableArrayListExtra("aktivitasUser", userLogArrayList);
+            startActivity(intent);
+        } else {
             if (!jawabanUser.equals("")) {
-                //SIMPAN DULU JAWABAN USER, KEMUDIAN LANJUT KE PERTANYAAN BERIKUTNYA
-                if (urutanPertanyaanSkrng < alidPertanyaan.size() - 1) {
-                    dataSource_penghubungTabel.insertLogUser(alidPertanyaan.get(urutanPertanyaanSkrng), String.valueOf(jawabanUser));
-                    urutanPertanyaanSkrng = urutanPertanyaanSkrng + 1;
+                UserLog userLog = new UserLog();
+                userLog.setJawabanUser(jawabanUser);
+                Grammar2 grammar2 = dataSource_penghubungTabel.ambilGrammarSesuaiId(alidPertanyaan.get(indexGrammar));
+                userLog.setKunci(grammar2.getJawaban());
+                userLog.setPenjelasan(grammar2.getPenjelasan());
+                userLog.setPertanyaan(grammar2.getPertanyaan());
+                System.out.println("");
+
+                if (indexGrammar < alidPertanyaan.size() - 1){
+                    indexGrammar++;
+                    netralkanOpsi();
+                    int idPertanyaan = alidPertanyaan.get(indexGrammar);
+                    bentukKuis(idPertanyaan);
+                    userLogArrayList.add(userLog);
                 } else {
-                    dataSource_penghubungTabel.insertLogUser(alidPertanyaan.get(urutanPertanyaanSkrng), String.valueOf(jawabanUser));
-                    // disable tombol next setelah sampai pertanyaan akhir.
-                    Bnext.setEnabled(false);
-                    Bback.setEnabled(false);
-                    BCheck.setEnabled(true);
-
-
-                }
-                int idPertanyaan = alidPertanyaan.get(urutanPertanyaanSkrng);
-                bentukKuis(idPertanyaan);
-
-            } else {
-                Toast.makeText(this, "silahkan pilih jawaban terlebih dahulu", Toast.LENGTH_LONG).show();
-            }
-            // KEMBALIKAN WARNA OPSI
-            netralkanOpsi();
-        } else {
-            // dipanggil setelah cek jawaban
-//            String penjelasan = dataSource_penghubungTabel.ambilPenjelasanSesuaiId(alidPertanyaan.get(urutanPertanyaanSkrng));
-//            TvPenjelasan.setText(penjelasan);
-
-            if (urutanPertanyaanSkrng<alidPertanyaan.size()-1){
-                urutanPertanyaanSkrng = urutanPertanyaanSkrng + 1;
-                tampilkanJawabanUserDanKunci();
-                String penjelasan = dataSource_penghubungTabel.ambilPenjelasanSesuaiId(alidPertanyaan.get(urutanPertanyaanSkrng));
-                TvPenjelasan.setText(penjelasan);
-            }else {
-                Bnext.setText("Finish");
-                if (Bnext.getText().toString().equalsIgnoreCase("finish")) {
-                    Intent intent = new Intent(ActivityKuisGrammar.this, ActivityHasil.class);
-                    startActivity(intent);
+                    bNext.setText("CHECK ANSWER");
                 }
             }
-
         }
     }
-
-
-    // tampilkan pertanyaan sebel;umnya ini adalah tampilan fungsi untuk back
-    public void tampilkanPertanyaanSebelumnya (View view) {
-       if ( urutanPertanyaanSkrng > 0){
-           urutanPertanyaanSkrng = urutanPertanyaanSkrng - 1;
-           tampilkanJawabanUserDanKunci();
-       }
-
-    }
-
-
-    public void tampilkanJawabanUserDanKunci(){
-        int idPertanyaan = alidPertanyaan.get(urutanPertanyaanSkrng);
-        bentukKuis(idPertanyaan);
-        Grammar grammar =dataSource_penghubungTabel.ambilpertanyaanSesuaiId(alidPertanyaan.get(urutanPertanyaanSkrng));
-        String kunciJawaban = grammar.getJawaban();
-
-        String jawabanUserDrLog = dataSource_penghubungTabel.bacaAktivitasUser(alidPertanyaan.get(urutanPertanyaanSkrng));
-        if (jawabanUserDrLog.equalsIgnoreCase("a")) {
-            setOpsi(TvOpsi1, TvOpsi2, TvOpsi3, TvOpsi4);
-        } else if (jawabanUserDrLog.equalsIgnoreCase("b")) {
-            setOpsi(TvOpsi2, TvOpsi1, TvOpsi3, TvOpsi4);
-        }else if (jawabanUserDrLog.equalsIgnoreCase("c")){
-            setOpsi(TvOpsi3, TvOpsi1, TvOpsi2, TvOpsi4);
-        }
-        else {
-            setOpsi(TvOpsi4, TvOpsi1, TvOpsi2, TvOpsi3);
-        }
-
-        if (kunciJawaban.equalsIgnoreCase("a")) {
-            setKunci(TvOpsi1);
-        } else if (kunciJawaban.equalsIgnoreCase("b")) {
-            setKunci(TvOpsi2);
-        } else if (kunciJawaban.equalsIgnoreCase("c")){
-            setKunci(TvOpsi3);
-        } else {
-            setKunci(TvOpsi4);
-        }
-    }
-    public void setKunci(TextView tvKunci) {
-        tvKunci.setTypeface(null, Typeface.BOLD);
-        tvKunci.setTextColor(Color.parseColor("#64dd17"));
-    }
-
-
-    public void cekJawaban(View view) {
-        urutanPertanyaanSkrng = 0;
-        sudahCekJawaban = true;
-        Bnext.setEnabled(true);
-        Bback.setEnabled(true);
-        tampilkanJawabanUserDanKunci();
-        if(sudahCekJawaban) {
-            String penjelasan = dataSource_penghubungTabel.ambilPenjelasanSesuaiId(alidPertanyaan.get(urutanPertanyaanSkrng));
-            TvPenjelasan.setText(penjelasan);
-        }
-    }
-
-
-
 }
-
-
-

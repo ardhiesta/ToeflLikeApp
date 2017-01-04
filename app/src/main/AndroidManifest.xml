@@ -16,7 +16,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivityQuiz" />
-        <activity android:name=".ActivityKuisGrammar" />
         <activity android:name=".ActivityKuisReading" />
         <activity android:name=".ActivityAbout" />
         <activity android:name=".ActivityHasil" />
@@ -25,7 +24,7 @@
         <activity android:name=".ActivityCekJawabanListening" />
         <activity android:name=".ActivityCekJawabanReading" />
         <activity android:name=".ActivityHasilKuis" />
-        <activity android:name=".ActivityKuisGrammarV2" />
+        <activity android:name=".ActivityKuisGrammar" />
         <activity android:name=".ActivityCekJawabanGrammar"></activity>
     </application>
 

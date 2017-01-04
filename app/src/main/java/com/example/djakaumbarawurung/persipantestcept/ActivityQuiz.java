@@ -14,7 +14,7 @@ public class ActivityQuiz extends AppCompatActivity {
     }
 
     public void tampilkanSoalGrammar(View view) {
-        Intent intent = new Intent(ActivityQuiz.this, ActivityKuisGrammarV2.class);
+        Intent intent = new Intent(ActivityQuiz.this, ActivityKuisGrammar.class);
         startActivity(intent);
     }
 
