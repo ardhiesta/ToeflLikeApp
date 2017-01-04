@@ -29,10 +29,11 @@
             android:textSize="18sp"
             android:text="Total right answers : " />
 
+        <!-- TextView untuk menampilkan jumlah jawaban benar -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvJmlBenarReading"
+            android:id="@+id/tvJmlBenar"
             android:text="[jumlah benar]"
             android:textSize="22sp"
             android:layout_marginBottom="10dp"
@@ -44,10 +45,11 @@
             android:textSize="18sp"
             android:text="Total wrong answers : " />
 
+        <!-- TextView untuk menampilkan jumlah jawaban salah -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvJmlSalahReading"
+            android:id="@+id/tvJmlSalah"
             android:text="[jumlah salah]"
             android:textSize="22sp"
             />

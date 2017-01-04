@@ -12,8 +12,8 @@ public class ActivityHasilKuis extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hasil_kuis);
 
-        tvBenar = (TextView) findViewById(R.id.tvJmlBenarReading);
-        tvSalah = (TextView) findViewById(R.id.tvJmlSalahReading);
+        tvBenar = (TextView) findViewById(R.id.tvJmlBenar);
+        tvSalah = (TextView) findViewById(R.id.tvJmlSalah);
 
         int jmlBenar = getIntent().getExtras().getInt("benar");
         int jmlsalah = getIntent().getExtras().getInt("salah");
