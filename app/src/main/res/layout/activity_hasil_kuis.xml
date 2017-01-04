@@ -15,44 +15,45 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginBottom="15dp"
             android:text="POINT"
             android:textAlignment="center"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Total right answers : " />
+            android:text="Total right answers : "
+            android:textSize="18sp" />
 
         <!-- TextView untuk menampilkan jumlah jawaban benar -->
         <TextView
+            android:id="@+id/tvJmlBenar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvJmlBenar"
+            android:layout_marginBottom="10dp"
             android:text="[jumlah benar]"
             android:textSize="22sp"
-            android:layout_marginBottom="10dp"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Total wrong answers : " />
+            android:text="Total wrong answers : "
+            android:textSize="18sp" />
 
         <!-- TextView untuk menampilkan jumlah jawaban salah -->
         <TextView
+            android:id="@+id/tvJmlSalah"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvJmlSalah"
             android:text="[jumlah salah]"
             android:textSize="22sp"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
