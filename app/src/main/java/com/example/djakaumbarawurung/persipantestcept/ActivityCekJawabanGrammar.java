@@ -29,12 +29,15 @@ public class ActivityCekJawabanGrammar extends AppCompatActivity {
         btnBackCekGrammar = (Button) findViewById(R.id.btnBackCekGrammar);
         btnNextCekGrammar = (Button) findViewById(R.id.btnNextCekGrammar);
 
+        //mengambil data aktivitas user yang dikirim dari ActivityKuisGrammar
         userLogArrayList = getIntent().getParcelableArrayListExtra("aktivitasUser");
 
+        //menampilkan soal, jawabanUser, kunci jawaban, serta penjelasan
         showQuestion(indexAktivitasUser);
     }
 
-    private void showQuestion(int index){
+    //menampilkan soal, jawabanUser, kunci jawaban, serta penjelasan ke screen
+    private void showQuestion(int index) {
         UserLog userLog = userLogArrayList.get(index);
         tvSoalCekGrammar.setText(userLog.getPertanyaan());
         tvJawabanUserCekGrammar.setText(userLog.getJawabanUser());
@@ -42,41 +45,48 @@ public class ActivityCekJawabanGrammar extends AppCompatActivity {
         tvPenjelasanCekGrammar.setText(userLog.getPenjelasan());
     }
 
-    public void nextCekGrammar(View view){
+    //dieksekusi ketika tombol Next diklik
+    public void nextCekGrammar(View view) {
         if (btnNextCekGrammar.getText().toString().equalsIgnoreCase("next")) {
+            //bila belum sampai di soal terakhir, tampilkan soal-soal selanjutnya
             if (indexAktivitasUser < userLogArrayList.size() - 1) {
                 indexAktivitasUser++;
                 showQuestion(indexAktivitasUser);
             } else {
-                //tombol cek hasil ditampilkan
+                //tombol cek hasil ditampilkan ketika sampai pada soal terakhir
                 btnNextCekGrammar.setText("SHOW RESULT");
             }
-        } else {
+        } else { //dieksekusi ketika tulisan pada tombol Next berubah menjadi SHOW RESULT
+            //menampilkan ActivityHasilKuis yang memuat informasi jumlah soal benar dan salah
             Intent intent = new Intent(ActivityCekJawabanGrammar.this, ActivityHasilKuis.class);
+            //menghitung jumlah soal yang dijawab benar
             int jmlBenar = hitungGrammarBenar();
+            //mengirimkan data jumlah soal benar ke ActivityHasilKuis
             intent.putExtra("benar", jmlBenar);
+            //menghitung dan mengirimkan data jumlah soal salah ke ActivityHasilKuis
             intent.putExtra("salah", userLogArrayList.size() - jmlBenar);
             startActivity(intent);
         }
     }
 
-    public void backCekGrammar(View view){
-        if (indexAktivitasUser > 0){
+    //dieksekusi ketika tombol Back diklik
+    public void backCekGrammar(View view) {
+        if (indexAktivitasUser > 0) {
             indexAktivitasUser--;
             showQuestion(indexAktivitasUser);
 
             //kembalikan btn next utk menampilkan next
-            if (btnNextCekGrammar.getText().toString().equalsIgnoreCase("show result")){
+            if (btnNextCekGrammar.getText().toString().equalsIgnoreCase("show result")) {
                 btnNextCekGrammar.setText("NEXT");
             }
         }
     }
 
     //hitung jumlah jawaban benar
-    private int hitungGrammarBenar(){
+    private int hitungGrammarBenar() {
         int jmlBenar = 0;
-        for (int i = 0; i < userLogArrayList.size(); i++){
-            if (userLogArrayList.get(i).getJawabanUser().startsWith(userLogArrayList.get(i).getKunci())){
+        for (int i = 0; i < userLogArrayList.size(); i++) {
+            if (userLogArrayList.get(i).getJawabanUser().startsWith(userLogArrayList.get(i).getKunci())) {
                 jmlBenar++;
             }
         }
