@@ -20,62 +20,62 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- text view untuk menampilkan soal kuis grammar -->
             <TextView
                 android:id="@+id/tvPertanyaanGrammar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:text="pertanyaan"
                 android:textColor="#000000"
-                android:textSize="22sp"
-                android:text="pertanyaan" />
+                android:textSize="22sp" />
 
+            <!-- text view untuk menampilkan opsi 1 kuis grammar -->
             <TextView
                 android:id="@+id/tvPilihan1Grammar"
-                android:text="pilihA"
-                android:onClick="opsi1KlikGrammar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:onClick="opsi1KlikGrammar"
+                android:text="pilihA" />
 
+            <!-- text view untuk menampilkan opsi 2 kuis grammar -->
             <TextView
                 android:id="@+id/tvPilihan2Grammar"
-                android:text="PilihB"
-                android:onClick="opsi2KlikGrammar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:onClick="opsi2KlikGrammar"
+                android:text="PilihB" />
 
+            <!-- text view untuk menampilkan opsi 3 kuis grammar -->
             <TextView
                 android:id="@+id/tvPilihan3Grammar"
-                android:text="PilihC"
-                android:onClick="opsi3KlikGrammar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:onClick="opsi3KlikGrammar"
+                android:text="PilihC" />
 
+            <!-- text view untuk menampilkan opsi 4 kuis grammar -->
             <TextView
                 android:id="@+id/tvPilihan4Grammar"
-                android:text="pilihD"
-                android:onClick="opsi4KlikGrammar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:onClick="opsi4KlikGrammar"
+                android:text="pilihD" />
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
+    <!-- button untuk menampilkan soal kuis grammar berikutnya -->
+    <!-- hanya bisa next, tidak bisa back ke pertanyaan sebelumnya -->
+    <Button
+        android:id="@+id/bNextGrammar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
-
-        <!-- redesign: hanya bisa next, tidak bisa back ke pertanyaan sebelumnya -->
-        <Button
-            android:id="@+id/bNextGrammar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="tampilkanPertanyaanGrammarSelanjutnya"
-            android:text="Next" />
-    </LinearLayout>
+        android:onClick="tampilkanPertanyaanGrammarSelanjutnya"
+        android:text="Next" />
 
 </RelativeLayout>
