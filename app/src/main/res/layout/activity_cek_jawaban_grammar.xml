@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- text view untuk menampilkan soal kuis grammar yang telah dikerjakan user -->
             <TextView
                 android:id="@+id/tvSoalCekGrammar"
                 android:layout_width="match_parent"
@@ -35,6 +36,7 @@
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
+            <!-- text view untuk menampilkan jawaban yang telah dipilih user -->
             <TextView
                 android:id="@+id/tvJawabanUserCekGrammar"
                 android:layout_width="match_parent"
@@ -51,6 +53,7 @@
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
+            <!-- text view untuk menampilkan jawaban yang benar -->
             <TextView
                 android:id="@+id/tvKunciCekGrammar"
                 android:layout_width="match_parent"
@@ -67,6 +70,7 @@
                 android:textColor="#000000"
                 android:textSize="18sp" />
 
+            <!-- text view untuk menampilkan penjelasan -->
             <TextView
                 android:id="@+id/tvPenjelasanCekGrammar"
                 android:layout_width="match_parent"
@@ -83,6 +87,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
+        <!-- button untuk menampilkan history pertanyaan sebelumnya -->
         <Button
             android:id="@+id/btnBackCekGrammar"
             android:layout_width="0dp"
@@ -91,6 +96,7 @@
             android:onClick="backCekGrammar"
             android:text="back" />
 
+        <!-- button untuk menampilkan history pertanyaan selanjutnya -->
         <Button
             android:id="@+id/btnNextCekGrammar"
             android:layout_width="0dp"
