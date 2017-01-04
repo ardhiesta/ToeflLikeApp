@@ -54,22 +54,33 @@ public class ActivityKuisGrammar extends AppCompatActivity {
         bNext.setEnabled(false);
     }
 
+    //untuk mengacak urutan id soal grammar
     private void acakIdPertanyaan() {
         long seed = System.nanoTime();
         if (alidPertanyaan.size() > 0) {
             Collections.shuffle(alidPertanyaan, new Random(seed));
 
             int idPertanyaan = alidPertanyaan.get(0);
+
+            //menampilkan soal grammar urutan pertama hasil pengacakan beserta opsinya
             bentukKuis(idPertanyaan);
         } else {
             Toast.makeText(this, "Pertanyaan Sudah Habis", Toast.LENGTH_LONG).show();
         }
     }
 
+    //untuk menampilkan soal kuis grammar beserta opsi
     private void bentukKuis(int idpertanyaan) {
+        //mengambil detail kuis grammar (soal, opsi, kunci jawaban) berdasarkan id soal
         Grammar2 grammar2 = dataSource_penghubungTabel.ambilGrammarSesuaiId(idpertanyaan);
+
+        //menampilkan soal ke TextView
         tvSoal.setText(grammar2.getPertanyaan());
+
+        //mengambil opsi kuis grammar
         ArrayList<Opsi> opsiArrayList = grammar2.getOpsiArrayList();
+
+        //menampilkan opsi kuis grammar ke TextView
         for (int i = 0; i < opsiArrayList.size(); i++) {
             Opsi opsi = opsiArrayList.get(i);
             if (opsi.getOpsi().toLowerCase().startsWith("a")) {
@@ -84,25 +95,33 @@ public class ActivityKuisGrammar extends AppCompatActivity {
         }
     }
 
+    //yang dilakukan ketika opsi ke-1 diklik
     public void opsi1KlikGrammar(View view) {
-        //ambil Abjad Pilihan User
+        //memberi warna dan mem-bold opsi yang dipilih user
         setOpsi(tvOpsi1);
+
+        //mengisi variabel jawabanUser sesuai opsi yang dipilih user
         jawabanUser = tvOpsi1.getText().toString();
+
+        //mengEnable tombol Next
         bNext.setEnabled(true);
     }
 
+    //yang dilakukan ketika opsi ke-2 diklik
     public void opsi2KlikGrammar(View view) {
         setOpsi(tvOpsi2);
         jawabanUser = tvOpsi2.getText().toString();
         bNext.setEnabled(true);
     }
 
+    //yang dilakukan ketika opsi ke-3 diklik
     public void opsi3KlikGrammar(View view) {
         setOpsi(tvOpsi3);
         jawabanUser = tvOpsi3.getText().toString();
         bNext.setEnabled(true);
     }
 
+    //yang dilakukan ketika opsi ke-4 diklik
     public void opsi4KlikGrammar(View view) {
         setOpsi(tvOpsi4);
         jawabanUser = tvOpsi4.getText().toString();
@@ -111,14 +130,21 @@ public class ActivityKuisGrammar extends AppCompatActivity {
 
     private void setOpsi(TextView tvdipilih) {
         netralkanOpsi();
+
+        //memberi warna dan memBold opsi yang dipilih
         tvdipilih.setTypeface(null, Typeface.BOLD);
         tvdipilih.setTextColor(Color.parseColor("#303f9f"));
     }
 
+    //menetralkan pilihan user
     public void netralkanOpsi() {
+        //mengosongkan variabel
         jawabanUser = "";
+
+        //menDisable tombol Next
         bNext.setEnabled(false);
 
+        //menghilangkan tanda pilihan user pada opsi yang dipilih
         tvOpsi1.setTypeface(null, Typeface.NORMAL);
         tvOpsi2.setTypeface(null, Typeface.NORMAL);
         tvOpsi3.setTypeface(null, Typeface.NORMAL);
@@ -142,26 +168,35 @@ public class ActivityKuisGrammar extends AppCompatActivity {
     }
 
     public void tampilkanPertanyaanGrammarSelanjutnya(View view) {
-        // tombol Next setelah sampai pada pertanyaan terakhir untuk narasi terakhir akan menampilkan activityCekJawaban
+        // tombol Next setelah sampai pada pertanyaan terakhir untuk narasi terakhir akan menampilkan ActivityCekJawaban
         if (bNext.getText().toString().equalsIgnoreCase("CHECK ANSWER")) {
             Intent intent = new Intent(ActivityKuisGrammar.this, ActivityCekJawabanGrammar.class);
+
+            //mengirim data aktivitas user (soal serta jawaban yang telah dipilih user) ke activity selanjutnya
             intent.putParcelableArrayListExtra("aktivitasUser", userLogArrayList);
             startActivity(intent);
         } else {
             if (!jawabanUser.equals("")) {
+                //menyimpan aktivitas user di kuis grammar ke obyek userLog
                 UserLog userLog = new UserLog();
                 userLog.setJawabanUser(jawabanUser);
                 Grammar2 grammar2 = dataSource_penghubungTabel.ambilGrammarSesuaiId(alidPertanyaan.get(indexGrammar));
                 userLog.setKunci(grammar2.getJawaban());
                 userLog.setPenjelasan(grammar2.getPenjelasan());
                 userLog.setPertanyaan(grammar2.getPertanyaan());
-                System.out.println("");
 
                 if (indexGrammar < alidPertanyaan.size() - 1){
+                    //menambah (increment) index grammar untuk menuju ke soal selanjutnya
                     indexGrammar++;
                     netralkanOpsi();
+
+                    //mengambil id soal selanjutnya dari ArrayList yang berisi id soal
                     int idPertanyaan = alidPertanyaan.get(indexGrammar);
+
+                    //menampilkan soal grammar beserta opsi
                     bentukKuis(idPertanyaan);
+
+                    //menyimpan aktivitas user ke ArrayList userLogArrayList
                     userLogArrayList.add(userLog);
                 } else {
                     bNext.setText("CHECK ANSWER");
