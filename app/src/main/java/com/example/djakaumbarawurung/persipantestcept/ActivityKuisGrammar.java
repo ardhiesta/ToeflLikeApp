@@ -44,7 +44,10 @@ public class ActivityKuisGrammar extends AppCompatActivity {
         dataSource_penghubungTabel = new DataSource_PenghubungTabel(this);
         dataSource_penghubungTabel.open();
 
+        //mengambil semua id soal kuis grammar dari tabel, disimpan ke ArrayList alidPertanyaan
         alidPertanyaan = dataSource_penghubungTabel.mengambilsemuaIdGrammar();
+
+        //id soal kuis grammar diacak
         acakIdPertanyaan();
 
         //tombol next tidak bisa diklik kecuali user telah memilih sebuah opsi untuk menjawab soal
@@ -141,9 +144,6 @@ public class ActivityKuisGrammar extends AppCompatActivity {
     public void tampilkanPertanyaanGrammarSelanjutnya(View view) {
         // tombol Next setelah sampai pada pertanyaan terakhir untuk narasi terakhir akan menampilkan activityCekJawaban
         if (bNext.getText().toString().equalsIgnoreCase("CHECK ANSWER")) {
-//            System.out.println(userLogArrayList.size());
-//            System.out.println("");
-
             Intent intent = new Intent(ActivityKuisGrammar.this, ActivityCekJawabanGrammar.class);
             intent.putParcelableArrayListExtra("aktivitasUser", userLogArrayList);
             startActivity(intent);
