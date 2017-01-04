@@ -18,7 +18,6 @@
         <activity android:name=".ActivityQuiz" />
         <activity android:name=".ActivityKuisReading" />
         <activity android:name=".ActivityAbout" />
-        <activity android:name=".ActivityHasil" />
         <activity android:name=".ActivityListening" />
         <activity android:name=".ActivityListeningPartB" />
         <activity android:name=".ActivityCekJawabanListening" />
