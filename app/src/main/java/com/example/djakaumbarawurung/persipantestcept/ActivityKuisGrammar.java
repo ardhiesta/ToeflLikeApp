@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Grammar2;
+import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Grammar;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Opsi;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.UserLog;
 import com.example.djakaumbarawurung.persipantestcept.database.DataSource_PenghubungTabel;
@@ -72,7 +72,7 @@ public class ActivityKuisGrammar extends AppCompatActivity {
     //untuk menampilkan soal kuis grammar beserta opsi
     private void bentukKuis(int idpertanyaan) {
         //mengambil detail kuis grammar (soal, opsi, kunci jawaban) berdasarkan id soal
-        Grammar2 grammar2 = dataSource_penghubungTabel.ambilGrammarSesuaiId(idpertanyaan);
+        Grammar grammar2 = dataSource_penghubungTabel.ambilGrammarSesuaiId(idpertanyaan);
 
         //menampilkan soal ke TextView
         tvSoal.setText(grammar2.getPertanyaan());
@@ -180,7 +180,7 @@ public class ActivityKuisGrammar extends AppCompatActivity {
                 //menyimpan aktivitas user di kuis grammar ke obyek userLog
                 UserLog userLog = new UserLog();
                 userLog.setJawabanUser(jawabanUser);
-                Grammar2 grammar2 = dataSource_penghubungTabel.ambilGrammarSesuaiId(alidPertanyaan.get(indexGrammar));
+                Grammar grammar2 = dataSource_penghubungTabel.ambilGrammarSesuaiId(alidPertanyaan.get(indexGrammar));
                 userLog.setKunci(grammar2.getJawaban());
                 userLog.setPenjelasan(grammar2.getPenjelasan());
                 userLog.setPertanyaan(grammar2.getPertanyaan());

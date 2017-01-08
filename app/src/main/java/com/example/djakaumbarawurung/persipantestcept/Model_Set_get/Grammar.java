@@ -1,5 +1,7 @@
 package com.example.djakaumbarawurung.persipantestcept.Model_Set_get;
 
+import java.util.ArrayList;
+
 /**
  * Created by Djaka Umbara Wurung on 8/6/2016.
  */
@@ -8,6 +10,7 @@ public class Grammar {
     private String pertanyaan;
     private String jawaban;
     private String penjelasan;
+    private ArrayList<Opsi> opsiArrayList;
 
     public int getId_soal() {
         return id_soal;
@@ -39,5 +42,13 @@ public class Grammar {
 
     public void setPenjelasan(String penjelasan) {
         this.penjelasan = penjelasan;
+    }
+
+    public ArrayList<Opsi> getOpsiArrayList() {
+        return opsiArrayList;
+    }
+
+    public void setOpsiArrayList(ArrayList<Opsi> opsiArrayList) {
+        this.opsiArrayList = opsiArrayList;
     }
 }

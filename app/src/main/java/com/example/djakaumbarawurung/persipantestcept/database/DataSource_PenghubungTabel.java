@@ -5,10 +5,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
-
-
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Grammar;
-import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Grammar2;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.NarasiReading;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.Opsi;
 import com.example.djakaumbarawurung.persipantestcept.Model_Set_get.OpsiReading;
@@ -166,26 +163,8 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
 
 
     // mengambil id grammar yang sesuai kondisi
-    public Grammar ambilpertanyaanSesuaiId(int Id_Grammar) {
-        Grammar tanya = new Grammar();
-        Cursor cursor = database.rawQuery("select * from " + SQLiteHelper.TABLE_GRAMMAR + " where " + SQLiteHelper.COLUMN_ID_GRAMMAR + " = ? "
-                , new String[]{String.valueOf(Id_Grammar)}
-        );
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            tanya.setId_soal(cursor.getInt(0));
-            tanya.setPertanyaan(cursor.getString(1));
-            tanya.setJawaban(cursor.getString(2));
-            tanya.setPenjelasan(cursor.getString(3));
-            cursor.moveToNext();
-        }
-
-        return tanya;
-    }
-
-    // mengambil id grammar yang sesuai kondisi
-    public Grammar2 ambilGrammarSesuaiId(int Id_Grammar) {
-        Grammar2 grammar2 = new Grammar2();
+    public Grammar ambilGrammarSesuaiId(int Id_Grammar) {
+        Grammar grammar2 = new Grammar();
         Cursor cursor = database.rawQuery("select * from " + SQLiteHelper.TABLE_GRAMMAR + " where " + SQLiteHelper.COLUMN_ID_GRAMMAR + " = ? "
                 , new String[]{String.valueOf(Id_Grammar)}
         );
