@@ -120,8 +120,14 @@ public class ActivityKuisReading extends AppCompatActivity {
         }
     }
 
+    /* opsi1KlikReading untuk mengisi variabel jawabanUser ke opsi pertama
+    * kemudian tombol next diEnable
+    * dan opsi yang dipilih user ditandai (bold, warna font ganti)
+    *
+    * demikian pula untuk opsi2KlikReading hingga opsi4KlikReading
+    * */
     public void opsi1KlikReading(View view) {
-        //ambil Abjad Pilihan User
+        //ambil jawaban pilihan User
         setOpsi(TvOpsi1);
         jawabanUser = TvOpsi1.getText().toString();
         bNextReading.setEnabled(true);
@@ -145,13 +151,17 @@ public class ActivityKuisReading extends AppCompatActivity {
         bNextReading.setEnabled(true);
     }
 
-
+    /* jawaban user dinetralkan
+     * opsiyang dipilih user diBold dan diganti warna fontnya */
     private void setOpsi(TextView tvdipilih) {
         netralkanOpsi();
         tvdipilih.setTypeface(null, Typeface.BOLD);
         tvdipilih.setTextColor(Color.parseColor("#303f9f"));
     }
 
+    /* variabek jawbanUser dikosongkan
+     * semua opsi fontnya dibuat normal (tidak bold)
+     * semua opsi warna fontnya kembali jadi hitam */
     public void netralkanOpsi() {
         jawabanUser = "";
         bNextReading.setEnabled(false);
