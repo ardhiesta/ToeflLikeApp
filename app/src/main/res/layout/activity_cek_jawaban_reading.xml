@@ -11,105 +11,113 @@
     tools:context="com.example.djakaumbarawurung.persipantestcept.ActivityCekJawabanReading">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_alignParentTop="true"
         android:id="@+id/svCekReadingTop"
-        android:layout_height="200dp">
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true">
+
+        <!-- TextView untuk menampilkan narasi -->
         <TextView
+            android:id="@+id/tvNarasiCekReading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvNarasiCekReading"
+            android:text="[narasi reading]"
             android:textColor="#000000"
-            android:textSize="22sp"
-            android:text="[narasi reading]"/>
+            android:textSize="22sp" />
     </ScrollView>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/svCekReadingTop"
-        >
+        android:layout_below="@+id/svCekReadingTop">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tvSoalCekReading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="[pertanyaan reading]"
                 android:textColor="#000000"
-                android:textSize="22sp"  />
+                android:textSize="22sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textSize="18sp"
                 android:text="Your answer is :"
-                />
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <!-- TextView untuk menampilkan jawaban user -->
             <TextView
+                android:id="@+id/tvJawabanUserCekReading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvJawabanUserCekReading"
+                android:layout_marginBottom="10dp"
                 android:text="[jawaban user]"
                 android:textColor="#000000"
-                android:textSize="16sp"
-                android:layout_marginBottom="10dp"
-                />
+                android:textSize="16sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textSize="18sp"
                 android:text="The right answer is :"
-                />
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <!-- TextView untuk menampilkan kunci jawaban -->
             <TextView
+                android:id="@+id/tvKunciCekReading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvKunciCekReading"
+                android:layout_marginBottom="10dp"
                 android:text="[kunci jawaban]"
                 android:textColor="#000000"
-                android:textSize="16sp"
-                android:layout_marginBottom="10dp"
-                />
+                android:textSize="16sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:textSize="18sp"
                 android:text="Explanation :"
-                />
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <!-- TextView untuk menampilkan penjelasan -->
             <TextView
+                android:id="@+id/tvPenjelasanCekReading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvPenjelasanCekReading"
                 android:text="[penjelasan reading]"
                 android:textColor="#000000"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        >
+        android:orientation="horizontal">
+
+        <!-- Button untuk menampilkan aktivitas user sebelumnya -->
         <Button
-            android:layout_width="0dp"
-            android:layout_weight="0.5"
-            android:layout_height="wrap_content"
-            android:text="back"
-            android:onClick="tampilkanBackAktivitasUserReading"
             android:id="@+id/btnBackCekReading"
-            />
-        <Button
             android:layout_width="0dp"
-            android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:text="next"
-            android:onClick="tampilkanNextAktivitasUserReading"
+            android:layout_weight="0.5"
+            android:onClick="tampilkanBackAktivitasUserReading"
+            android:text="back" />
+
+        <!-- Button untuk menampilkan aktivitas user selanjutnya -->
+        <Button
             android:id="@+id/btnNextCekReading"
-            />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:onClick="tampilkanNextAktivitasUserReading"
+            android:text="next" />
     </LinearLayout>
 </RelativeLayout>

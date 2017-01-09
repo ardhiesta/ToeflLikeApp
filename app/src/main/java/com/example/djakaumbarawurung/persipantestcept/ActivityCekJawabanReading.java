@@ -55,11 +55,22 @@ public class ActivityCekJawabanReading extends AppCompatActivity {
         }
     }
 
+    /* menghitung jumlah jawaban benar, membandingkan jawaban user dengan kunci
+     * jawaban user = opsi yang dipilih user
+     * kunci = abjad opsi yang menunjukkan jawaban yang benar
+     * kunci disimpan di database
+     *
+     * apabila jawaban user diawali  (.startsWith) dengan abjad kunci
+     * maka jawaban dihitung benar
+     *
+     * misal, jawaban user: a. abc xyz
+     * kunci: a
+     * maka jawaban dihitung benar */
     private int hitungReadingBenar(){
         int jmlBenar = 0;
         for (int i = 0; i < aktivitasUserDiKuisReading.size(); i++){
             if (aktivitasUserDiKuisReading.get(i).getJawabanUser()
-                    .equalsIgnoreCase(aktivitasUserDiKuisReading.get(i).getKunci())){
+                    .startsWith(aktivitasUserDiKuisReading.get(i).getKunci())){
                 jmlBenar++;
             }
         }
