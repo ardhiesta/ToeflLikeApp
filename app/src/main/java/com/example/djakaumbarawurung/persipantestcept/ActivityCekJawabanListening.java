@@ -16,8 +16,9 @@ import java.util.HashMap;
 public class ActivityCekJawabanListening extends AppCompatActivity {
     ArrayList<Listening> arListening = new ArrayList<>();
 //    TextView tvQuestion, tvOpsi1, tvOpsi2, tvOpsi3;
-    int currentQuestion = 0;
+    int indexAktivitasUser = 0;
     ArrayList<ListeningLog> listeningLogArrayList = new ArrayList<>();
+    TextView tvSoalCekListening, tvJawabanUserCekListening, tvKunciCekListening;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,12 @@ public class ActivityCekJawabanListening extends AppCompatActivity {
 //        tvOpsi2 = (TextView) findViewById(R.id.TvOpsi2ListeningCek);
 //        tvOpsi3 = (TextView) findViewById(R.id.TvOpsi3ListeningCek);
 
+        tvJawabanUserCekListening = (TextView) findViewById(R.id.tvJawabanUserCekListening);
+        tvSoalCekListening = (TextView) findViewById(R.id.tvSoalCekListening);
+        tvKunciCekListening = (TextView) findViewById(R.id.tvKunciCekReading);
+
 //        setDummyData();
+        listeningLogArrayList = getIntent().getParcelableArrayListExtra("aktivitasUser");
 
         showQuestion(0);
     }
@@ -56,31 +62,36 @@ public class ActivityCekJawabanListening extends AppCompatActivity {
 //        } else if (l.getUserAnswer().equalsIgnoreCase("c")){
 //            setOpsi(tvOpsi3);
 //        }
+
+        ListeningLog listeningLog = listeningLogArrayList.get(index);
+        tvSoalCekListening.setText("Question "+(index++));
+        tvJawabanUserCekListening.setText(listeningLog.getJawabanUser());
+        tvKunciCekListening.setText(listeningLog.getKunci());
     }
 
     public void nextCekListening(View view){
-        if (currentQuestion < arListening.size() - 1){
-            currentQuestion++;
-            showQuestion(currentQuestion);
+        if (indexAktivitasUser < arListening.size() - 1){
+            indexAktivitasUser++;
+            showQuestion(indexAktivitasUser);
         }
     }
 
     public void backCekListening(View view){
-        if (currentQuestion > 0){
-            currentQuestion--;
-            showQuestion(currentQuestion);
+        if (indexAktivitasUser > 0){
+            indexAktivitasUser--;
+            showQuestion(indexAktivitasUser);
         }
     }
 
-    public void setKunci(TextView tvKunci) {
-        tvKunci.setTypeface(null, Typeface.BOLD);
-        tvKunci.setTextColor(Color.parseColor("#64dd17"));
-    }
-
-    public void setOpsi(TextView tvOpsi) {
-        tvOpsi.setTypeface(null, Typeface.BOLD);
-        tvOpsi.setTextColor(Color.parseColor("#303f9f"));
-    }
+//    public void setKunci(TextView tvKunci) {
+//        tvKunci.setTypeface(null, Typeface.BOLD);
+//        tvKunci.setTextColor(Color.parseColor("#64dd17"));
+//    }
+//
+//    public void setOpsi(TextView tvOpsi) {
+//        tvOpsi.setTypeface(null, Typeface.BOLD);
+//        tvOpsi.setTextColor(Color.parseColor("#303f9f"));
+//    }
 
 //    public void netralkanOpsi() {
 //        tvOpsi1.setTypeface(null, Typeface.NORMAL);
@@ -91,42 +102,42 @@ public class ActivityCekJawabanListening extends AppCompatActivity {
 //        tvOpsi3.setTextColor(Color.parseColor("#000000"));
 //    }
 
-    private void setDummyData(){
-//        ArrayList<Listening> arListening = new ArrayList<>();
-        Listening l = new Listening();
-        l.setQuestion("question 1");
-        l.setRealAnswer("a");
-        l.setUserAnswer("c");
-        HashMap<String, String > hmOpsi = new HashMap<>();
-        hmOpsi.put("a", "a. opsi 1a");
-        hmOpsi.put("b", "b. opsi 1a");
-        hmOpsi.put("c", "c. opsi 1a");
-//        hmOpsi.put("d", "d. opsi 1a");
-        l.setOpsi(hmOpsi);
-        arListening.add(l);
-
-        Listening l1 = new Listening();
-        l1.setQuestion("question 2");
-        l1.setRealAnswer("b");
-        l1.setUserAnswer("b");
-        HashMap<String, String > hmOpsi1 = new HashMap<>();
-        hmOpsi1.put("a", "a. opsi 1b");
-        hmOpsi1.put("b", "b. opsi 1b");
-        hmOpsi1.put("c", "c. opsi 1b");
-//        hmOpsi1.put("d", "d. opsi 1b");
-        l1.setOpsi(hmOpsi1);
-        arListening.add(l1);
-
-        Listening l2 = new Listening();
-        l2.setQuestion("question 3");
-        l2.setRealAnswer("c");
-        l2.setUserAnswer("a");
-        HashMap<String, String > hmOpsi2 = new HashMap<>();
-        hmOpsi2.put("a", "a. opsi 1c");
-        hmOpsi2.put("b", "b. opsi 1c");
-        hmOpsi2.put("c", "c. opsi 1c");
-//        hmOpsi2.put("d", "d. opsi 1c");
-        l2.setOpsi(hmOpsi2);
-        arListening.add(l2);
-    }
+//    private void setDummyData(){
+////        ArrayList<Listening> arListening = new ArrayList<>();
+//        Listening l = new Listening();
+//        l.setQuestion("question 1");
+//        l.setRealAnswer("a");
+//        l.setUserAnswer("c");
+//        HashMap<String, String > hmOpsi = new HashMap<>();
+//        hmOpsi.put("a", "a. opsi 1a");
+//        hmOpsi.put("b", "b. opsi 1a");
+//        hmOpsi.put("c", "c. opsi 1a");
+////        hmOpsi.put("d", "d. opsi 1a");
+//        l.setOpsi(hmOpsi);
+//        arListening.add(l);
+//
+//        Listening l1 = new Listening();
+//        l1.setQuestion("question 2");
+//        l1.setRealAnswer("b");
+//        l1.setUserAnswer("b");
+//        HashMap<String, String > hmOpsi1 = new HashMap<>();
+//        hmOpsi1.put("a", "a. opsi 1b");
+//        hmOpsi1.put("b", "b. opsi 1b");
+//        hmOpsi1.put("c", "c. opsi 1b");
+////        hmOpsi1.put("d", "d. opsi 1b");
+//        l1.setOpsi(hmOpsi1);
+//        arListening.add(l1);
+//
+//        Listening l2 = new Listening();
+//        l2.setQuestion("question 3");
+//        l2.setRealAnswer("c");
+//        l2.setUserAnswer("a");
+//        HashMap<String, String > hmOpsi2 = new HashMap<>();
+//        hmOpsi2.put("a", "a. opsi 1c");
+//        hmOpsi2.put("b", "b. opsi 1c");
+//        hmOpsi2.put("c", "c. opsi 1c");
+////        hmOpsi2.put("d", "d. opsi 1c");
+//        l2.setOpsi(hmOpsi2);
+//        arListening.add(l2);
+//    }
 }
