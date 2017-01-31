@@ -16,11 +16,10 @@ Untuk membuat screen tutorial tersebut, langkah-langkahnya adalah sebagai beriku
 
 1. Masukkan gambar-gambar yang berisi screenshot program untuk tutorial ke folder <b>res/drawable</b>
 
-2. Tambahkan library berikut ke [build.gradle](https://github.com/ardhiesta/ToeflLikeApp/blob/master/app/build.gradle)
+2. Tambahkan code berikut ke [build.gradle](https://github.com/ardhiesta/ToeflLikeApp/blob/master/app/build.gradle)
 
-    //viewPager indicator
-
-    compile 'me.relex:circleindicator:1.2.2@aar'
+    <pre>//viewPager indicator
+    compile 'me.relex:circleindicator:1.2.2@aar'</pre>
 
 3. Buat <b>Fragment</b>, caranya dengan klik kanan pada folder package di project Android Studio kemudian pilih <b>New --> Fragment --> Fargment (Blank)</b>
 
