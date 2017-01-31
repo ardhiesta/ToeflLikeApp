@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.djakaumbarawurung.persipantestcept.database.DataSource_PenghubungTabel;
 import com.example.djakaumbarawurung.persipantestcept.database.SQLiteHelper;
+import com.example.djakaumbarawurung.persipantestcept.tutor_screen.TutorActivity;
 
 public class ActivityHome extends AppCompatActivity {
 
@@ -155,5 +156,8 @@ public class ActivityHome extends AppCompatActivity {
         super.onPause();
     }
 
-
+    public void tampilkanTutorial(View view) {
+        Intent intent = new Intent(ActivityHome.this, TutorActivity.class);
+        startActivity(intent);
+    }
 }

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">PersipanTestCEPT</string>
     <string name="soal_listening_partB_1">abc bje fewj fewjhvf fewhvf wef fwegf fewfj fwejfh fwehvf fwjehvf</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -24,7 +24,10 @@
         <activity android:name=".ActivityCekJawabanReading" />
         <activity android:name=".ActivityHasilKuis" />
         <activity android:name=".ActivityKuisGrammar" />
-        <activity android:name=".ActivityCekJawabanGrammar"></activity>
+        <activity android:name=".ActivityCekJawabanGrammar" />
+        <activity android:name=".tutor_screen.TutorActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            ></activity>
     </application>
 
 </manifest>
