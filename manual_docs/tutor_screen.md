@@ -11,3 +11,17 @@ Kemudian user diarahkan ke activity yang memuat dua halaman yang berisi screensh
 ![tutor1](https://github.com/ardhiesta/ToeflLikeApp/blob/master/manual_docs/img/tutor1.jpg)
 
 ![tutor1](https://github.com/ardhiesta/ToeflLikeApp/blob/master/manual_docs/img/tutor2.jpg)
+
+Untuk membuat screen tutorial tersebut, langkah-langkahnya adalah sebagai berikut:
+
+1. Masukkan gambar-gambar yang berisi screenshot program untuk tutorial ke folder <b>res/drawable</b>
+
+2. Tambahkan library berikut ke [build.gradle](https://github.com/ardhiesta/ToeflLikeApp/blob/master/app/build.gradle)
+
+    //viewPager indicator
+
+    compile 'me.relex:circleindicator:1.2.2@aar'
+
+3. Buat <b>Fragment</b>, caranya dengan klik kanan pada folder package di project Android Studio kemudian pilih <b>New --> Fragment --> Fargment (Blank)</b>
+
+4. Setiap gambar akan ditampilkan pada sebuah Fragment, dalam contoh ini saya membuat dua buah Fragmant yaitu [FragmentTutor1](https://github.com/ardhiesta/ToeflLikeApp/blob/master/app/src/main/java/com/example/djakaumbarawurung/persipantestcept/tutor_screen/FragmentTutor1.java) dan [FragmentTutor2](https://github.com/ardhiesta/ToeflLikeApp/blob/master/app/src/main/java/com/example/djakaumbarawurung/persipantestcept/tutor_screen/FragmentTutor1.java).
