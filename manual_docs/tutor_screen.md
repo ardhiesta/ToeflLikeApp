@@ -4,4 +4,4 @@ Misal ingin memberi petunjuk mengenai penggunaan aplikasi, dapat dilakukan denga
 
 Pada contoh ini, di Home terdapat tombol untuk membuka tutorial.
 
-![home](/reds/projects/android/PersiapanTest\ CEPT/manual_docs/img/home.jpg)
+![home](https://github.com/ardhiesta/ToeflLikeApp/blob/master/manual_docs/img/home.jpg)
