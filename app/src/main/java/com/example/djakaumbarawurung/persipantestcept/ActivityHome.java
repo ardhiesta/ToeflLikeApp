@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.djakaumbarawurung.persipantestcept.database.DataSource_PenghubungTabel;
 import com.example.djakaumbarawurung.persipantestcept.database.SQLiteHelper;
+import com.example.djakaumbarawurung.persipantestcept.manage_data.TambahSoalGrammarActivity;
 import com.example.djakaumbarawurung.persipantestcept.tutor_screen.TutorActivity;
 
 public class ActivityHome extends AppCompatActivity {
@@ -158,6 +159,11 @@ public class ActivityHome extends AppCompatActivity {
 
     public void tampilkanTutorial(View view) {
         Intent intent = new Intent(ActivityHome.this, TutorActivity.class);
+        startActivity(intent);
+    }
+
+    public void tampilkanAdmin(View view) {
+        Intent intent = new Intent(ActivityHome.this, TambahSoalGrammarActivity.class);
         startActivity(intent);
     }
 }

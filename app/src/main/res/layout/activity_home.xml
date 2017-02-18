@@ -40,4 +40,15 @@
         android:layout_alignStart="@+id/button"
         />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="admin"
+        android:id="@+id/btn_admin"
+        android:layout_below="@+id/btn_tutorial"
+        android:layout_alignLeft="@+id/button"
+        android:onClick="tampilkanAdmin"
+        android:layout_alignStart="@+id/button"
+        />
+
 </RelativeLayout>
