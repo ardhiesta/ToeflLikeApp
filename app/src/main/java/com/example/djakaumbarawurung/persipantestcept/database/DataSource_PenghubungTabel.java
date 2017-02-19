@@ -1,5 +1,6 @@
 package com.example.djakaumbarawurung.persipantestcept.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -63,6 +64,31 @@ public class DataSource_PenghubungTabel extends AppCompatActivity {
                 pertanyaan + "','" +
                 jawaban + "','" +
                 penjelasan + "')");
+    }
+
+    // insert data ke tabel grammar, id digenerate otomatis
+    public long insertDataKeGrammarTanpaId(String pertanyaan, String jawaban, String penjelasan) {
+        ContentValues values = new ContentValues();
+        values.put(databaseHelper.COLUMN_PERTANYAAN_GRAMMAR, pertanyaan);
+        values.put(databaseHelper.COLUMN_JAWABAN_GRAMMAR, jawaban);
+        values.put(databaseHelper.COLUMN_PENJELASAN_GRAMMAR, penjelasan);
+
+        // selain pakai .execSQL() untuk memasukkan data ke tabel bisa juga pakai .insert()
+        // bedanya kalau pakai .insert akan dapat return value berupa nilai ID grammar terakhir yang tercreate
+        // nilai ID grammar akan dibuat otomatis, tidak perlu ditulis
+        // nilai ID grammar akan digunakan untuk menginsert opsi baru di TB_OPSI_GRAMMAR
+        long insertedId = database.insert(databaseHelper.TABLE_GRAMMAR, null, values);
+        return insertedId;
+    }
+
+    // insert data ke tabel opsi grammar (TB_OPSI_GRAMMAR)
+    // opsiGrammar didapat dari data yang diinput lewat form, idGrammar didapat dari hasil method insertDataKeGrammarTanpaId
+    public long insertOpsiGrammar(String opsiGrammar, long idGrammar){
+        ContentValues values = new ContentValues();
+        values.put(databaseHelper.COLUMN_OPSI_GRAMMAR, opsiGrammar);
+        values.put(databaseHelper.COLUMN_ID_GRAMMAR, idGrammar);
+        long newOpsiId = database.insert(databaseHelper.TABLE_OPSI_GRAMMAR, null, values);
+        return newOpsiId;
     }
 
     public void insertDataKeOpsi(int id, String opsi, int id_grammar) {

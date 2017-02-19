@@ -72,7 +72,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
      * untuk menyimpan soal tipe grammar
      * -------------------------
      * Tabel pertanyaan grammar
-     * id_tanya_grammar
+     * id_grammar
      * pertanyaan
      * jawaban
      * penjelasan
