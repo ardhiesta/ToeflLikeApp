@@ -24,7 +24,7 @@ Buat Activity baru, misal TambahSoalGrammarActivity
 
 layout activity_tambah_soal_grammar.xml
 
-![tutor1](https://github.com/ardhiesta/ToeflLikeApp/blob/master/manual_docs/img/add_new_question.jpg)
+![activity_tambah_soal_grammar.xml](https://github.com/ardhiesta/ToeflLikeApp/blob/master/manual_docs/img/add_new_question.jpg)
 
 code lengkap dapat dilihat
 [DI SINI](https://github.com/ardhiesta/ToeflLikeApp/blob/master/app/src/main/res/layout/activity_tambah_soal_grammar.xml)
