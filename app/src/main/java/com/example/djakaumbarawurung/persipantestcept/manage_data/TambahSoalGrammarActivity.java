@@ -2,6 +2,7 @@ package com.example.djakaumbarawurung.persipantestcept.manage_data;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import com.example.djakaumbarawurung.persipantestcept.R;
@@ -18,5 +19,16 @@ public class TambahSoalGrammarActivity extends AppCompatActivity {
         etQuestion = (EditText) findViewById(R.id.etQuestion);
         etAnswer = (EditText) findViewById(R.id.etAnswer);
         etExplanation = (EditText) findViewById(R.id.etExplanation);
+    }
+
+    public void simpanPertanyaanGrammarBaru(View view){
+        String pertanyaan = etQuestion.getText().toString();
+        String jawaban = etAnswer.getText().toString();
+        String penjelasan = etExplanation.getText().toString();
+
+        if (!pertanyaan.equalsIgnoreCase("") && !jawaban.equalsIgnoreCase("")
+                && !penjelasan.equalsIgnoreCase("")){
+
+        }
     }
 }
